@@ -37,3 +37,19 @@ bool Mesh::intersect (Ray r, Intersection *isect) {
     
     return intersect;
 }
+
+int Mesh::getIndexVertices(Point K){
+    int index =0;
+    for (auto it = vertices.begin(); it != vertices.end(); it++){
+        if (it->equals(K)){
+            return index;
+        }
+    }
+    return -1;
+}
+
+void Mesh::addVertice(Point p){
+    vertices.push_back(p);
+    numVertices++;
+}
+

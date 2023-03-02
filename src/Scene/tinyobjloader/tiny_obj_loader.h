@@ -386,7 +386,7 @@ struct shape_t {
 
 // Vertex attributes
 struct attrib_t {
-  std::vector<real_t> vertices;  // 'v'(xyz)
+  float *vertices;  // 'v'(xyz)
 
   // For backward compatibility, we store vertex weight in separate array.
   std::vector<real_t> vertex_weights;  // 'v'(w)

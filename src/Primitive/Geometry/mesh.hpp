@@ -34,6 +34,9 @@ public:
     int numNormals;
     std::vector<Vector> normals;
     bool intersect (Ray r, Intersection *isect);
+    void addVertice(Point p);
+
+    int getIndexVertices(Point K);
     
     Mesh(): numFaces(0), numVertices(0), numNormals(0) {}
 };

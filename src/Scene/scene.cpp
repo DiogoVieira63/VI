@@ -17,6 +17,7 @@
 #include <set>
 #include <vector>
 
+using namespace std;
 using namespace tinyobj;
 
 static void PrintInfo (const ObjReader myObj) {
@@ -59,14 +60,66 @@ static void PrintInfo (const ObjReader myObj) {
  https://github.com/tinyobjloader/tinyobjloader
  */
 
+
+
+
 bool Scene::Load (const std::string &fname) {
     ObjReader myObjReader;
 
     if (!myObjReader.ParseFromFile(fname)) {
         return false;
     }
-    
-    //PrintInfo (myObjReader);
+    const tinyobj::attrib_t attrib = myObjReader.GetAttrib();
+    float *vertices = attrib.vertices;
+
+
+    const std::vector<shape_t> shps = myObjReader.GetShapes();
+    // iterate over shapes
+    for (auto shp = shps.begin() ; shp != shps.end() ; shp++) {
+
+        Primitive* p = new Primitive ();
+        Mesh* mesh = new Mesh();
+        p->g = mesh;
+
+        // iterate over this shape’s vertices
+        auto indices = shp->mesh.indices;
+
+        for (auto vertex = indices.begin() ; vertex != indices.end() ; ) {
+
+            Face* face = new Face();
+            // each 3 consecutives vertices form a face (triangle)
+
+            Point myVertex[3];
+            for (int v = 0 ; v<3 ; v++ , vertex++) {
+                // get each vertex XYZ
+                const int objNdx = vertex->vertex_index;
+                myVertex[v].X = vertices[objNdx*3];
+                myVertex[v].Y = vertices[objNdx*3+1];
+                myVertex[v].Z = vertices[objNdx*3+2];
+
+                int index = mesh->getIndexVertices(myVertex[v]);
+                if (index != -1) face->vert_ndx[v] = index;
+                else{
+                    mesh->addVertice(myVertex[v]);
+                    face->vert_ndx[v] = mesh->numVertices-1;
+                }
+            }
+        }
+        this->prims.push_back(p);
+    }
+
+    /*typedef struct Face {
+    int vert_ndx[3];            // indices to our internal vector of vertices (in Mesh)
+    Vector geoNormal;           // geometric normal
+    bool hasShadingNormals;     // are there per vertex shading normals ??
+    int vert_normals_ndx[3];    // indices to veritices normals
+    BB bb;      // face bounding box
+                // this is min={0.,0.,0.} , max={0.,0.,0.} due to the Point constructor
+} Face;*/
+
+
+
+    //PrintInfo (myObjReader)
 
     // convert loader's representation to my representation
 

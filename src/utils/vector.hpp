@@ -104,6 +104,10 @@ public:
         const float XYZ[3]={X,Y,Z};
         return Point(XYZ[x], XYZ[y], XYZ[z]);
     }
+
+    bool equals(Point other){
+        return this->X == other.X && this->Y == other.Y && this->Z == other.Z;
+    }
 };
 
 #endif /* vector_hpp */
