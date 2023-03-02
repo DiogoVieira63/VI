@@ -1,0 +1,3 @@
+/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/cmake-build-debug/CMakeFiles/VI_RT.dir
+/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/cmake-build-debug/CMakeFiles/rebuild_cache.dir

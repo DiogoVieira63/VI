@@ -1,0 +1,656 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "VI_RT"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 26,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 6,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 7,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 8,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 9,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 10,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 11,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 14,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 15,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 16,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 17,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 18,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 19,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 20,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 21,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 22,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 23,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 24,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -fdiagnostics-color=always"
+				},
+				{
+					"fragment" : "-std=gnu++14"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 2,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/3DSortingStruct"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Camera"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Image"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Light"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Primitive"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Primitive/BRDF"
+				},
+				{
+					"backtrace" : 8,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Primitive/Geometry"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Rays"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Renderer"
+				},
+				{
+					"backtrace" : 11,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Scene"
+				},
+				{
+					"backtrace" : 12,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Scene/tinyobjloader"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Scene/tinyobjloader/examples/obj_sticher"
+				},
+				{
+					"backtrace" : 14,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Scene/tinyobjloader/examples/viewer"
+				},
+				{
+					"backtrace" : 15,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Scene/tinyobjloader/examples/voxelize"
+				},
+				{
+					"backtrace" : 16,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Scene/tinyobjloader/experimental"
+				},
+				{
+					"backtrace" : 17,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Scene/tinyobjloader/experimental/lfpAlloc"
+				},
+				{
+					"backtrace" : 18,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Scene/tinyobjloader/mapbox"
+				},
+				{
+					"backtrace" : 19,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/Scene/tinyobjloader/tests"
+				},
+				{
+					"backtrace" : 20,
+					"path" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/utils"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "14"
+			},
+			"sourceIndexes" : 
+			[
+				2,
+				7,
+				10,
+				17,
+				18,
+				19,
+				21,
+				23,
+				25,
+				26,
+				34,
+				36,
+				37,
+				39,
+				40,
+				42,
+				43,
+				44,
+				46,
+				47,
+				49,
+				52
+			]
+		}
+	],
+	"id" : "VI_RT::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "VI_RT",
+	"nameOnDisk" : "VI_RT",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				3,
+				4,
+				5,
+				6,
+				8,
+				9,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				20,
+				22,
+				24,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				35,
+				38,
+				41,
+				45,
+				48,
+				50,
+				51
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				2,
+				7,
+				10,
+				17,
+				18,
+				19,
+				21,
+				23,
+				25,
+				26,
+				34,
+				36,
+				37,
+				39,
+				40,
+				42,
+				43,
+				44,
+				46,
+				47,
+				49,
+				52
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"path" : "3DSortingStruct/AccelStruct.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Camera/camera.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Camera/perspective.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Camera/perspective.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Image/image.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Light/light.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Primitive/BRDF/BRDF.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Primitive/BRDF/Phong.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Primitive/BRDF/Phong.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Primitive/Geometry/geometry.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Primitive/Geometry/mesh.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Primitive/Geometry/mesh.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Primitive/BB.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Primitive/primitive.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Rays/intersection.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Rays/ray.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Renderer/renderer.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/examples/callback_api/main.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/examples/obj_sticher/obj_sticher.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/examples/obj_sticher/obj_writer.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/tinyobjloader/examples/obj_sticher/obj_writer.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/examples/skin_weight/main.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/tinyobjloader/examples/viewer/stb_image.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/examples/viewer/trackball.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/tinyobjloader/examples/viewer/trackball.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/examples/viewer/viewer.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/examples/voxelize/main.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/tinyobjloader/examples/voxelize/voxelizer.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/tinyobjloader/experimental/lfpAlloc/Allocator.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/tinyobjloader/experimental/lfpAlloc/ChunkList.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/tinyobjloader/experimental/lfpAlloc/Pool.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/tinyobjloader/experimental/lfpAlloc/PoolDispatcher.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/tinyobjloader/experimental/lfpAlloc/Utils.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/tinyobjloader/experimental/tinyobj_loader_opt.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/experimental/trackball.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/tinyobjloader/experimental/trackball.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/experimental/viewer.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/fuzzer/fuzz_ParseFromString.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/tinyobjloader/mapbox/earcut.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/python/bindings.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/python/tiny_obj_loader.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/tinyobjloader/tests/acutest.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/tests/tester.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/loader_example.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/tinyobjloader/tiny_obj_loader.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/tinyobjloader/tiny_obj_loader.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/loader_example.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Scene/scene.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Scene/scene.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "utils/AABB.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "utils/RGB.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "utils/vector.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "main.cpp",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "EXECUTABLE"
+}
