@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/cmake-build-debug"
+			"value" : "/home/diogo/git_workspace/VI/src/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -543,7 +543,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "/home/diogo/git_workspace/VI/src/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -603,7 +603,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT"
+			"value" : "/home/diogo/git_workspace/VI/src"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1135,7 +1135,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/cmake-build-debug"
+			"value" : "/home/diogo/git_workspace/VI/src/cmake-build-debug"
 		},
 		{
 			"name" : "VI_RT_IS_TOP_LEVEL",
@@ -1159,7 +1159,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT"
+			"value" : "/home/diogo/git_workspace/VI/src"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",

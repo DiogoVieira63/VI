@@ -15,7 +15,7 @@ int main(int argc, const char * argv[]) {
     Perspective cam(640, 480);  // image resolution
     bool success;
     
-    success = scene.Load("/Users/psantos/VI-RT/VI-RT/VI-RT/Scene/tinyobjloader/models/cornell_box.obj");
+    success = scene.Load("/home/diogo/git_workspace/VI/src/models/cornell_box.obj");
     
     if (!success) {
         std::cout << "ERROR!! :o\n";

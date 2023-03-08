@@ -10,6 +10,7 @@
 
 #include <cmath>
 
+
 class Vector {
 public:
     float X,Y,Z;
@@ -33,7 +34,7 @@ public:
     }
     // note that methods declared within the class are inline by default
     inline float norm () {
-        return std::sqrtf(X*X+Y*Y+Z*Z);
+        return sqrtf(X*X+Y*Y+Z*Z);
     }
     inline void normalize () {
         const float my_norm = norm();
@@ -61,6 +62,10 @@ public:
     // from pbrt book (3rd ed.), sec 2.2.1, pag 66
     int MaxDimension(void) {
         return (X > Y) ? ((X > Z) ? 0 : 2) : ((Y > Z) ? 1 : 2);
+    }
+
+    float MaxComponent(void) {
+        return (X > Y) ? ((X > Z) ? X : Z) : ((Y > Z) ? Y : Z);
     }
     // from pbrt book (3rd ed.), sec 2.2.1, pag 67
     Vector Permute(int x, int y, int z) {

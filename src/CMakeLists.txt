@@ -41,39 +41,11 @@ add_executable(VI_RT
         Rays/intersection.hpp
         Rays/ray.hpp
         Renderer/renderer.hpp
-        Scene/tinyobjloader/examples/callback_api/main.cc
-        Scene/tinyobjloader/examples/obj_sticher/obj_sticher.cc
-        Scene/tinyobjloader/examples/obj_sticher/obj_writer.cc
-        Scene/tinyobjloader/examples/obj_sticher/obj_writer.h
-        Scene/tinyobjloader/examples/skin_weight/main.cc
-        Scene/tinyobjloader/examples/viewer/stb_image.h
-        Scene/tinyobjloader/examples/viewer/trackball.cc
-        Scene/tinyobjloader/examples/viewer/trackball.h
-        Scene/tinyobjloader/examples/viewer/viewer.cc
-        Scene/tinyobjloader/examples/voxelize/main.cc
-        Scene/tinyobjloader/examples/voxelize/voxelizer.h
-        Scene/tinyobjloader/experimental/lfpAlloc/Allocator.hpp
-        Scene/tinyobjloader/experimental/lfpAlloc/ChunkList.hpp
-        Scene/tinyobjloader/experimental/lfpAlloc/Pool.hpp
-        Scene/tinyobjloader/experimental/lfpAlloc/PoolDispatcher.hpp
-        Scene/tinyobjloader/experimental/lfpAlloc/Utils.hpp
-        Scene/tinyobjloader/experimental/tinyobj_loader_opt.h
-        Scene/tinyobjloader/experimental/trackball.cc
-        Scene/tinyobjloader/experimental/trackball.h
-        Scene/tinyobjloader/experimental/viewer.cc
-        Scene/tinyobjloader/fuzzer/fuzz_ParseFromString.cc
-        Scene/tinyobjloader/mapbox/earcut.hpp
-        Scene/tinyobjloader/python/bindings.cc
-        Scene/tinyobjloader/python/tiny_obj_loader.cc
-        Scene/tinyobjloader/tests/acutest.h
-        Scene/tinyobjloader/tests/tester.cc
-        Scene/tinyobjloader/loader_example.cc
-        Scene/tinyobjloader/tiny_obj_loader.cc
         Scene/tinyobjloader/tiny_obj_loader.h
-        Scene/loader_example.cc
+        #Scene/loader_example.cc
         Scene/scene.cpp
         Scene/scene.hpp
-        utils/AABB.cpp
+        #utils/AABB.cpp
         utils/RGB.hpp
         utils/vector.hpp
         main.cpp)

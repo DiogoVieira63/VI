@@ -24,7 +24,7 @@ static void PrintInfo (const ObjReader myObj) {
     const tinyobj::attrib_t attrib = myObj.GetAttrib();
     const std::vector<tinyobj::shape_t> shapes = myObj.GetShapes();
     const std::vector<tinyobj::material_t> materials = myObj.GetMaterials();
-    std::cout << "# of vertices  : " << (attrib.vertices.size() / 3) << std::endl;
+    //std::cout << "# of vertices  : " << (attrib.vertices/ 3) << std::endl;
     std::cout << "# of normals   : " << (attrib.normals.size() / 3) << std::endl;
     std::cout << "# of texcoords : " << (attrib.texcoords.size() / 2)
               << std::endl;
@@ -67,17 +67,18 @@ bool Scene::Load (const std::string &fname) {
     ObjReader myObjReader;
 
     if (!myObjReader.ParseFromFile(fname)) {
+        printf("Failed to load .obj file: %s\n", fname.c_str());
         return false;
     }
     const tinyobj::attrib_t attrib = myObjReader.GetAttrib();
-    float *vertices = attrib.vertices;
+    vector<float> vertices = attrib.vertices;
 
 
     const std::vector<shape_t> shps = myObjReader.GetShapes();
     // iterate over shapes
     for (auto shp = shps.begin() ; shp != shps.end() ; shp++) {
 
-        Primitive* p = new Primitive ();
+        Primitive *p = new Primitive ();
         Mesh* mesh = new Mesh();
         p->g = mesh;
 
@@ -87,6 +88,8 @@ bool Scene::Load (const std::string &fname) {
         for (auto vertex = indices.begin() ; vertex != indices.end() ; ) {
 
             Face* face = new Face();
+            mesh->faces.push_back(*face);
+            mesh->numFaces++;
             // each 3 consecutives vertices form a face (triangle)
 
             Point myVertex[3];
@@ -96,7 +99,6 @@ bool Scene::Load (const std::string &fname) {
                 myVertex[v].X = vertices[objNdx*3];
                 myVertex[v].Y = vertices[objNdx*3+1];
                 myVertex[v].Z = vertices[objNdx*3+2];
-
                 int index = mesh->getIndexVertices(myVertex[v]);
                 if (index != -1) face->vert_ndx[v] = index;
                 else{
@@ -105,25 +107,9 @@ bool Scene::Load (const std::string &fname) {
                 }
             }
         }
-        this->prims.push_back(p);
+        this->prims.push_back(*p);
+        this->numPrimitives++;
     }
-
-    /*typedef struct Face {
-    int vert_ndx[3];            // indices to our internal vector of vertices (in Mesh)
-    Vector geoNormal;           // geometric normal
-    bool hasShadingNormals;     // are there per vertex shading normals ??
-    int vert_normals_ndx[3];    // indices to veritices normals
-    BB bb;      // face bounding box
-                // this is min={0.,0.,0.} , max={0.,0.,0.} due to the Point constructor
-} Face;*/
-
-
-
-    //PrintInfo (myObjReader)
-
-    // convert loader's representation to my representation
-
-    // your code here
     return true;
 }
 

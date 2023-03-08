@@ -194,7 +194,7 @@ struct material_t {
 
   int dummy;  // Suppress padding warning.
 
-  std::string ambient_texname;             // map_Ka
+  std::string ambient_texname;             // map_Ka. For ambient or ambient occlusion.
   std::string diffuse_texname;             // map_Kd
   std::string specular_texname;            // map_Ks
   std::string specular_highlight_texname;  // map_Ns
@@ -386,7 +386,7 @@ struct shape_t {
 
 // Vertex attributes
 struct attrib_t {
-  float *vertices;  // 'v'(xyz)
+  std::vector<real_t> vertices;  // 'v'(xyz)
 
   // For backward compatibility, we store vertex weight in separate array.
   std::vector<real_t> vertex_weights;  // 'v'(w)
@@ -446,6 +446,7 @@ struct callback_t {
 
   callback_t()
       : vertex_cb(NULL),
+        vertex_color_cb(NULL),
         normal_cb(NULL),
         texcoord_cb(NULL),
         index_cb(NULL),
@@ -542,7 +543,7 @@ class ObjReader {
   ///
   bool ParseFromFile(const std::string &filename,
                      const ObjReaderConfig &config = ObjReaderConfig());
-    
+
   ///
   /// Parse .obj from a text string.
   /// Need to supply .mtl text string by `mtl_text`.
@@ -2282,7 +2283,7 @@ void LoadMtl(std::map<std::string, int> *material_map,
       continue;
     }
 
-    // ambient texture
+    // ambient or ambient occlusion texture
     if ((0 == strncmp(token, "map_Ka", 6)) && IS_SPACE(token[6])) {
       token += 7;
       ParseTextureNameAndOption(&(material.ambient_texname),

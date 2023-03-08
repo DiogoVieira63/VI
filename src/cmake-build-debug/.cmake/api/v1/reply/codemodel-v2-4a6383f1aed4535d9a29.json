@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "VI_RT::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-VI_RT-Debug-6e2c4f310245f8473dc8.json",
+					"jsonFile" : "target-VI_RT-Debug-0fde32f6faa1975be9e8.json",
 					"name" : "VI_RT",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/cmake-build-debug",
-		"source" : "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT"
+		"build" : "/home/diogo/git_workspace/VI/src/cmake-build-debug",
+		"source" : "/home/diogo/git_workspace/VI/src"
 	},
 	"version" : 
 	{

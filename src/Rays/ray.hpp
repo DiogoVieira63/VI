@@ -14,6 +14,7 @@ class Ray {
 public:
     Point o; // ray origin
     Vector dir; // ray direction
+    float tMax; // ray maximum distance
     Ray () {}
     Ray (Point o, Vector d): o(o),dir(d) {}
     ~Ray() {}

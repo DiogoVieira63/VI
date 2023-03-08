@@ -1,4 +1,4 @@
-# Install script for directory: /home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT
+# Install script for directory: /home/diogo/git_workspace/VI/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/diogo/GoogleDrive/Mestrado/2_SEMESTRE/CG/VI/VI-RT/VI-RT/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/diogo/git_workspace/VI/src/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
