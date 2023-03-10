@@ -1,3 +1,0 @@
-/home/diogo/git_workspace/VI/src/cmake-build-debug/CMakeFiles/VI_RT.dir
-/home/diogo/git_workspace/VI/src/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/diogo/git_workspace/VI/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir

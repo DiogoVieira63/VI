@@ -10,13 +10,15 @@
 
 #include "camera.hpp"
 #include "scene.hpp"
+#include "image.hpp"
 
 class Renderer {
 protected:
     Camera *cam;
     Scene *scene;
+    Image * img;
 public:
-    Renderer (Camera *cam, Scene * scene): cam(cam), scene(scene) {}
+    Renderer (Camera *cam, Scene * scene, Image * img): cam(cam), scene(scene), img(img) {}
     void Render () {}
 };
 
