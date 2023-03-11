@@ -8,18 +8,19 @@
 #include "mesh.hpp"
 #include <iostream>
 /*
-void GetUVs(Point uv[3])  {
+void Mesh::GetUVs(Point uv[3])  {
+    Mesh *mesh = new Mesh();
     if (mesh->uv) {
         uv[0] = mesh->uv[v[0]];
         uv[1] = mesh->uv[v[1]];
         uv[2] = mesh->uv[v[2]];
     } else {
-        uv[0] = Point2f(0, 0);
-        uv[1] = Point2f(1, 0);
-        uv[2] = Point2f(1, 1);
+        uv[0] = Point(0, 0);
+        uv[1] = Point(1, 0);
+        uv[2] = Point(1, 1);
     }
 }
- */
+*/
 // see pbrt book (3rd ed.), sec 3.6.2, pag 2
 
 bool Mesh::TriangleIntersect (Ray r, Face f, Intersection *isect) {
@@ -43,7 +44,8 @@ bool Mesh::TriangleIntersect (Ray r, Face f, Intersection *isect) {
     Compute error bounds for triangle intersection 227
     Interpolate (u, v) parametric coordinates and hit point 164
     Test intersection against alpha texture, if present 165
-    Fill in SurfaceInteraction from triangle hit 165*/
+    Fill in SurfaceInteraction from triangle hit 165
+
 
     Point p0 = this->vertices[f.vert_ndx[0]];
     Point p1 = this->vertices[f.vert_ndx[1]];
@@ -115,75 +117,96 @@ bool Mesh::TriangleIntersect (Ray r, Face f, Intersection *isect) {
     if (t <= deltaT)
         return false;
 
-    /*
+
     Vector dpdu, dpdv;
     Point uv[3];
     GetUVs(uv);
-    Vector2f duv02 = uv[0] - uv[2], duv12 = uv[1] - uv[2];
-    Vector3f dp02 = p0 - p2, dp12 = p1 - p2;
-    Float determinant = duv02[0] * duv12[1] - duv02[1] * duv12[0];
+    Vector duv02 = uv[0] - uv[2], duv12 = uv[1] - uv[2];
+    Vector dp02 = p0 - p2, dp12 = p1 - p2;
+    float determinant = duv02[0] * duv12[1] - duv02[1] * duv12[0];
     if (determinant == 0) {
         CoordinateSystem(Normalize(Cross(p2 - p0, p1 - p0)), &dpdu, &dpdv);
     } else {
-        Float invdet = 1 / determinant;
+        float invdet = 1 / determinant;
         dpdu = ( duv12[1] * dp02 - duv02[1] * dp12) * invdet;
         dpdv = (-duv12[0] * dp02 + duv02[0] * dp12) * invdet;
     }
 
-    Float xAbsSum = (std::abs(b0 * p0.x) + std::abs(b1 * p1.x) +
-                     std::abs(b2 * p2.x));
-    Float yAbsSum = (std::abs(b0 * p0.y) + std::abs(b1 * p1.y) +
-                     std::abs(b2 * p2.y));
-    Float zAbsSum = (std::abs(b0 * p0.z) + std::abs(b1 * p1.z) +
-                     std::abs(b2 * p2.z));
-    Vector3f pError = gamma(7) * Vector3f(xAbsSum, yAbsSum, zAbsSum);
+    float xAbsSum = (std::abs(b0 * p0.x) + std::abs(b1 * p1.x) + std::abs(b2 * p2.x));
+    float yAbsSum = (std::abs(b0 * p0.y) + std::abs(b1 * p1.y) + std::abs(b2 * p2.y));
+    float zAbsSum = (std::abs(b0 * p0.z) + std::abs(b1 * p1.z) + std::abs(b2 * p2.z));
+    Vector pError = gamma(7) * Vector3f(xAbsSum, yAbsSum, zAbsSum);
 
-    Point3f pHit = b0 * p0 + b1 * p1 + b2 * p2;
-    Point2f uvHit = b0 * uv[0] + b1 * uv[1] + b2 * uv[2];
+    Point pHit = b0 * p0 + b1 * p1 + b2 * p2;
+    Point uvHit = b0 * uv[0] + b1 * uv[1] + b2 * uv[2];
 
     if (testAlphaTexture && mesh->alphaMask) {
-        SurfaceInteraction isectLocal(pHit, Vector3f(0,0,0), uvHit,
-                                      Vector3f(0,0,0), dpdu, dpdv, Normal3f(0,0,0), Normal3f(0,0,0),
-                                      ray.time, this);
+        SurfaceInteraction isectLocal(pHit, Vector3f(0,0,0), uvHit, Vector3f(0,0,0), dpdu, dpdv, Normal3f(0,0,0), Normal3f(0,0,0), ray.time, this);
         if (mesh->alphaMask->Evaluate(isectLocal) == 0)
             return false;
     }
 
-    *isect = SurfaceInteraction(pHit, pError, uvHit, -ray.d, dpdu, dpdv,
-                                Normal3f(0, 0, 0), Normal3f(0, 0, 0), ray.time, this);
+    *isect = SurfaceInteraction(pHit, pError, uvHit, -ray.d, dpdu, dpdv, Normal(0, 0, 0), Normal(0, 0, 0), ray.time, this);
     isect->n = isect->shading.n = Normal3f(Normalize(Cross(dp02, dp12)));
     if (mesh->n || mesh->s) {
-        Normal3f ns;
-        if (mesh->n) ns = Normalize(b0 * mesh->n[v[0]] +
-                                    b1 * mesh->n[v[1]] +
-                                    b2 * mesh->n[v[2]]);
-        else
-            ns = isect->n;
+        Normal ns;
+        if (mesh->n) ns = Normalize(b0 * mesh->n[v[0]] + b1 * mesh->n[v[1]] + b2 * mesh->n[v[2]]);
+        else ns = isect->n;
 
-        Vector3f ss;
-        if (mesh->s) ss = Normalize(b0 * mesh->s[v[0]] +
-                                    b1 * mesh->s[v[1]] +
-                                    b2 * mesh->s[v[2]]);
-        else
-            ss = Normalize(isect->dpdu);
+        Vector ss;
+        if (mesh->s) ss = Normalize(b0 * mesh->s[v[0]] + b1 * mesh->s[v[1]] +  b2 * mesh->s[v[2]]);
+        else ss = Normalize(isect->dpdu);
 
-        Vector3f ts = Cross(ss, ns);
+        Vector ts = Cross(ss, ns);
         if (ts.LengthSquared() > 0.f) {
             ts = Normalize(ts);
             ss = Cross(ts, ns);
-        }
-        else
-            CoordinateSystem((Vector3f)ns, &ss, &ts);
-
+        } else CoordinateSystem((Vector)ns, &ss, &ts);
         isect->SetShadingGeometry(ss, ts, dndu, dndv, true);
     }
-
     if (mesh->n)
         isect->n = Faceforward(isect->n, isect->shading.n);
     else if (reverseOrientation ^ transformSwapsHandedness)
         isect->n = isect->shading.n = -isect->n;
-        */
-    return false;
+*/
+
+    //if(!f.bb.intersect(r)) return false;  // pp do prof
+
+    const float EPSILON = 0.0000001;
+    Point vertex0 = this->vertices[f.vert_ndx[0]];
+    Point vertex1 = this->vertices[f.vert_ndx[1]];
+    Point vertex2 = this->vertices[f.vert_ndx[2]];
+    Vector edge1, edge2, h, s, q;
+    float a,i,u,v;
+    edge1 = vertex1.vec2point(vertex0);
+    edge2 = vertex2.vec2point(vertex0);
+
+    h = r.dir.cross(edge2);
+    a = edge1.dot(h);
+    if (a > -EPSILON && a < EPSILON)
+        return false;    // This ray is parallel to this triangle.
+    i = 1.0f/a;
+    Point ps = r.o - vertex0;
+    s = Vector(ps.X,ps.Y,ps.Z);
+    u = i * s.dot(h);
+    if (u < 0.0 || u > 1.0)
+        return false;
+    q = s.cross(edge1);
+    v = i * r.dir.dot(q);
+    if (v < 0.0 || u + v > 1.0)
+        return false;
+    // At this stage we can compute t to find out where the intersection point is on the line.
+    float t = i * edge2.dot(q);
+    if (t > EPSILON) // ray intersection
+    {
+        isect->p = r.o + (r.dir * t);
+        // preencher resto do isect
+
+        return true;
+    }
+    else // This means that there is a line intersection but not a ray intersection.
+        return false;
+
 }
 
 

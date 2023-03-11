@@ -67,6 +67,9 @@ public:
     float MaxComponent(void) {
         return (X > Y) ? ((X > Z) ? X : Z) : ((Y > Z) ? Y : Z);
     }
+    float MinComponent(void) {
+        return (X < Y) ? ((X < Z) ? X : Z) : ((Y < Z) ? Y : Z);
+    }
     // from pbrt book (3rd ed.), sec 2.2.1, pag 67
     Vector Permute(int x, int y, int z) {
         const float XYZ[3]={X,Y,Z};
@@ -78,6 +81,22 @@ public:
         Vector vv = *this;
         return (vv.dot(v) < 0.f) ? -1.f * vv : vv;
     }
+
+    Vector max (Vector v2) {
+        double v1 = sqrt(pow(X,2) + pow(Y,2) + pow(Z,2));
+        double v = sqrt(pow(v2.X,2) + pow(v2.Y,2) + pow(v2.Z,2));
+
+        return (v1 > v) ? Vector(X,Y,Z) : v2;
+    }
+
+    Vector min (Vector v2) {
+        double v1 = sqrt(pow(X,2) + pow(Y,2) + pow(Z,2));
+        double v = sqrt(pow(v2.X,2) + pow(v2.Y,2) + pow(v2.Z,2));
+
+        return (v1 < v) ? Vector(X,Y,Z) : v2;
+    }
+
+
 };
 
 class Point {
@@ -89,6 +108,7 @@ public:
     ~Point(){}
     Point operator -(const Point &p) const { return {X-p.X, Y-p.Y, Z-p.Z};}
     Point operator +(const Point &p) const { return {X+p.X, Y+p.Y, Z+p.Z};}
+    Point operator +(const Vector &v) const { return {X+v.X, Y+v.Y, Z+v.Z};}
     Point operator *(const float f) const { return {f*X, f*Y, f*Z};}
     Point operator *(const double f) const { return {(float)(f*X), (float)(f*Y), (float)(f*Z)};}
     friend Point operator*(const float f, const Point& p) {
