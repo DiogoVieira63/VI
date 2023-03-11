@@ -19,7 +19,7 @@ protected:
     Image * img;
 public:
     Renderer (Camera *cam, Scene * scene, Image * img): cam(cam), scene(scene), img(img) {}
-    void Render () {}
+    void Render ();
 };
 
 #endif /* renderer_hpp */

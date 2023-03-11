@@ -48,4 +48,4 @@ add_executable(VI_RT
         #utils/AABB.cpp
         utils/RGB.hpp
         utils/vector.hpp
-        main.cpp Image/ImagePPM.cpp)
+        main.cpp Image/ImagePPM.cpp Renderer/renderer.cpp)
