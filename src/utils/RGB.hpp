@@ -21,8 +21,27 @@ public:
         this->B += rhs.B;
         return *this;
     }
+    RGB operator+(RGB const& obj)
+    {
+        RGB res;
+        res.R = R + obj.R;
+        res.G = G + obj.G;
+        res.B = B + obj.B;
+        return res;
+    }
+    RGB operator*(RGB const& obj)
+    {
+        RGB res;
+        res.R = R * obj.R;
+        res.G = G * obj.G;
+        res.B = B * obj.B;
+        return res;
+    }
     float Y() {
         return (R*0.2126 + G*0.7152 + B*0.0722 );
+    }
+    bool isZero () {
+        return ((R==0.) && (G==0.) && (B==0.));
     }
 };
 

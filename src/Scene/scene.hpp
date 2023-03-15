@@ -18,11 +18,12 @@
 #include "BRDF.hpp"
 
 class Scene {
-    int numPrimitives, numLights, numBRDFs;
     std::vector <Primitive> prims;
-    std::vector <Light> lights;
     std::vector <BRDF> BRDFs;
 public:
+    std::vector <Light> lights;
+    int numPrimitives, numLights, numBRDFs;
+
     Scene (): numPrimitives(0), numLights(0), numBRDFs(0) {}
     bool Load (const std::string &fname);
     bool SetLights (void) { return true; };

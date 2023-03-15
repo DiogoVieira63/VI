@@ -21,6 +21,7 @@ include_directories(Scene/tinyobjloader/experimental)
 include_directories(Scene/tinyobjloader/experimental/lfpAlloc)
 include_directories(Scene/tinyobjloader/mapbox)
 include_directories(Scene/tinyobjloader/tests)
+include_directories(Shader)
 include_directories(utils)
 
 add_executable(VI_RT
@@ -48,4 +49,8 @@ add_executable(VI_RT
         #utils/AABB.cpp
         utils/RGB.hpp
         utils/vector.hpp
-        main.cpp Image/ImagePPM.cpp Renderer/renderer.cpp)
+        main.cpp Image/ImagePPM.cpp
+        Light/AmbientLight.hpp
+        Shader/shader.hpp
+        Shader/AmbientShader.cpp
+        Renderer/StandardRenderer.cpp)

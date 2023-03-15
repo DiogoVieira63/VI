@@ -19,7 +19,8 @@ bool Perspective::GenerateRay(const int x, const int y, Ray *r, const float *cam
     xc = xs * tan (this->fovW/2);
     yc = ys * tan (this->fovH/2);
 
-    // TODO
+    r->dir = Vector(xc,yc,1);
+    // TODO  -  É suposto multiplicar pelo c2w?
     r->o = Eye;
     return false;
 }

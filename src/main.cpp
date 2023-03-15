@@ -8,15 +8,19 @@
 #include <iostream>
 #include "scene.hpp"
 #include "perspective.hpp"
-#include "renderer.hpp"
 #include "ImagePPM.hpp"
+#include "StandardRenderer.hpp"
+#include "AmbientShader.hpp"
+#include "AmbientLight.hpp"
 
 int main(int argc, const char * argv[]) {
     Scene scene;
     Perspective *cam; // Camera
     ImagePPM *img;    // Image
+    Shader *shd;
     bool success;
-    
+
+    // "/home/lau/Desktop/Universidade/VI/VI/src/models/cornell_box.obj"
     success = scene.Load("/home/diogo/git_workspace/VI/src/models/cornell_box.obj");
     
     if (!success) {
@@ -26,7 +30,12 @@ int main(int argc, const char * argv[]) {
     std::cout << "Scene Load: SUCCESS!! :-)\n";
     scene.printSummary();
     std::cout << std::endl;
-    
+
+    // add an ambient light to the scene
+    AmbientLight ambient(RGB(0.9,0.9,0.9));
+    scene.lights.push_back(ambient);
+    scene.numLights++;
+
     // Image resolution
     const int W= 640;
     const int H= 480;
@@ -38,12 +47,16 @@ int main(int argc, const char * argv[]) {
     const Vector Up={0,1,0};
     const float fovW = 3.14f/3.f, fovH = 3.14f/3.f;
     cam = new Perspective(Eye, At, Up, W, H, fovW, fovH);
+
+    // create the shader
+    RGB background(0.05, 0.05, 0.55);
+    shd = new AmbientShader(&scene, background);
     // declare the renderer
-    Renderer myRender (cam, &scene, img);
+    StandardRenderer myRender (cam, &scene, img, shd);
     // render
     myRender.Render();
+
     // save the image
-    
     img->Save("MyImage.ppm");
     
     std::cout << "That's all, folks!" << std::endl;

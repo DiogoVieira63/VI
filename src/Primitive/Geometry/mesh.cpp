@@ -206,7 +206,7 @@ bool Mesh::TriangleIntersect (Ray r, Face f, Intersection *isect) {
     }
     else // This means that there is a line intersection but not a ray intersection.
         return false;
-
+    // TODO  -  Perguntar se está correto
 }
 
 
