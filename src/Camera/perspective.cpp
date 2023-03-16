@@ -13,7 +13,7 @@ bool Perspective::GenerateRay(const int x, const int y, Ray *r, const float *cam
 
     //screen space
     xs = (2 * (x + 0.5f))/this->W - 1;
-    ys = (2 * (y + 0.5f))/this->W - 1;
+    ys = (2 * (y + 0.5f))/this->H - 1;
 
     //camera space
     xc = xs * tan (this->fovW/2);
