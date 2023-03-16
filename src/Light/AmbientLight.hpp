@@ -15,9 +15,12 @@ public:
     RGB color;
     AmbientLight (RGB _color): color(_color) { isAmbient = true; }
     ~AmbientLight () {}
+
     // return the Light RGB radiance for a given point : p
     RGB L (Point p) {return color;}
+
     // return a point p and RGB radiance for a given probability pair prob[2]
+    // TODO - é preciso completar esta função?
     RGB Sample_L (float *prob, Point *p) {
         p = NULL;
         return color;

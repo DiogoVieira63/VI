@@ -74,8 +74,13 @@ bool Scene::Load (const std::string &fname) {
     const tinyobj::attrib_t attrib = myObjReader.GetAttrib();
     vector<float> vertices = attrib.vertices;
 
-
     const std::vector<shape_t> shps = myObjReader.GetShapes();
+    const std::vector<material_t> materials = myObjReader.GetMaterials();
+    for (auto mat = materials.begin(); mat != materials.end(); mat++){
+        
+    }
+
+
     // iterate over shapes
     for (auto shp = shps.begin() ; shp != shps.end() ; shp++) {
 
@@ -111,6 +116,8 @@ bool Scene::Load (const std::string &fname) {
         this->prims.push_back(*p);
         this->numPrimitives++;
     }
+
+
     return true;
 }
 

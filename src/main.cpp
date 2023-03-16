@@ -20,7 +20,7 @@ int main(int argc, const char * argv[]) {
     Shader *shd;
     bool success;
 
-    // "/home/lau/Desktop/Universidade/VI/VI/src/models/cornell_box.obj"
+    //success = scene.Load("/home/lau/Desktop/Universidade/VI/VI/src/models/cornell_box.obj");
     success = scene.Load("/home/diogo/git_workspace/VI/src/models/cornell_box.obj");
     
     if (!success) {
