@@ -77,7 +77,7 @@ bool Scene::Load (const std::string &fname) {
     const std::vector<shape_t> shps = myObjReader.GetShapes();
     const std::vector<material_t> materials = myObjReader.GetMaterials();
     for (auto mat = materials.begin(); mat != materials.end(); mat++){
-        
+
     }
 
 
