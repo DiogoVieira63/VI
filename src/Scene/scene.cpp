@@ -77,8 +77,16 @@ bool Scene::Load (const std::string &fname) {
     const std::vector<shape_t> shps = myObjReader.GetShapes();
     const std::vector<material_t> materials = myObjReader.GetMaterials();
     for (auto mat = materials.begin(); mat != materials.end(); mat++){
+        Phong *m = new Phong();
 
+        m->Kd =RGB(mat->diffuse[0],mat->diffuse[1], mat->diffuse[2]);
+        m->Ks =RGB(mat->specular[0],mat->specular[1], mat->specular[2]);
+        m->Ka = RGB(mat->specular[0],mat->specular[1], mat->specular[2]);
+        m->Kt = RGB(mat->transmittance[0],mat->transmittance[1], mat->transmittance[2]);
+        this->BRDFs.push_back(*m);
+        this->numBRDFs++;
     }
+
 
 
     // iterate over shapes
@@ -90,12 +98,13 @@ bool Scene::Load (const std::string &fname) {
 
         // iterate over this shape’s vertices
         auto indices = shp->mesh.indices;
+        p->material_ndx= shp->mesh.material_ids[0];
+
 
         for (auto vertex = indices.begin() ; vertex != indices.end() ; ) {
 
             Face* face = new Face();
-            mesh->faces.push_back(*face);
-            mesh->numFaces++;
+
             // each 3 consecutives vertices form a face (triangle)
 
             Point myVertex[3];
@@ -112,6 +121,8 @@ bool Scene::Load (const std::string &fname) {
                     face->vert_ndx[v] = mesh->numVertices-1;
                 }
             }
+            mesh->faces.push_back(*face);
+            mesh->numFaces++;
         }
         this->prims.push_back(*p);
         this->numPrimitives++;
@@ -121,7 +132,8 @@ bool Scene::Load (const std::string &fname) {
     return true;
 }
 
-bool Scene::trace (Ray r, Intersection *isect) {
+bool Scene::
+trace (Ray r, Intersection *isect) {
     Intersection curr_isect;
     bool intersection = false;    
     

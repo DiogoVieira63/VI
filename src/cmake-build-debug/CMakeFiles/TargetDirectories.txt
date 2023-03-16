@@ -1,3 +1,0 @@
-/home/lau/Desktop/Universidade/VI/VI/src/cmake-build-debug/CMakeFiles/VI_RT.dir
-/home/lau/Desktop/Universidade/VI/VI/src/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/lau/Desktop/Universidade/VI/VI/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir
