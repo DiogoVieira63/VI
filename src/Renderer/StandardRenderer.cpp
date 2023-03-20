@@ -11,8 +11,6 @@ void StandardRenderer::Render () {
     int W=0,H=0;  // resolution
     int x,y;
 
-    // get resolution from the camera
-    // ...
     cam->getResolution(&W,&H);
     
     // main rendering loop: get primary rays from the camera until done
@@ -22,16 +20,12 @@ void StandardRenderer::Render () {
             Intersection isect;
             bool intersected;
             RGB color;
-          
             // Generate Ray (camera)
-            // ...
-            
+            cam->GenerateRay(x,y,&primary);
             // trace ray (scene)
-            // ...
-            
+            intersected = scene->trace(primary,&isect);
             // shade this intersection (shader)
-            // ...
-            
+            color = this->shd->shade(intersected,isect);
             // write the result into the image frame buffer (image)
             img->set(x,y,color);
             

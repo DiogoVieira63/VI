@@ -7,6 +7,7 @@
 
 #ifndef BB_hpp
 #define BB_hpp
+#include <iostream>
 
 #include "vector.hpp"
 #include "ray.hpp"
