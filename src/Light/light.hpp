@@ -18,7 +18,7 @@ public:
     ~Light () {}
 
     // return the Light RGB radiance for a given point : p
-    virtual RGB L (Point p) {return RGB();}
+    virtual RGB L (Point p) {return RGB(0.9,0.9,0.9);}
 
     // return a point p and RGB radiance for a given probability pair prob[2]
     virtual RGB Sample_L (float *prob, Point *p) {return RGB();}

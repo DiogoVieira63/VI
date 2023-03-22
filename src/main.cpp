@@ -21,7 +21,7 @@ int main(int argc, const char * argv[]) {
     bool success;
 
     //success = scene.Load("/home/lau/Desktop/Universidade/VI/VI/src/models/cornell_box.obj");
-    success = scene.Load("/home/diogo/git_workspace/VI/src/models/cornell_box.obj");
+    success = scene.Load("../models/cube.obj");
     
     if (!success) {
         std::cout << "ERROR!! :o\n";
@@ -39,7 +39,7 @@ int main(int argc, const char * argv[]) {
     // Image resolution
     const int W= 640;
     const int H= 480;
-    
+
     img = new ImagePPM(W,H);
     
     // Camera parameters

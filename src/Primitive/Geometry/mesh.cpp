@@ -36,9 +36,8 @@ bool Mesh::TriangleIntersect (Ray r, Face f, Intersection *isect) {
 
     Vector edge1, edge2, h, s, q;
     float a,i,u,v;
-    edge1 = vertex1.vec2point(vertex0);
-    edge2 = vertex2.vec2point(vertex0);
-
+    edge1 = vertex0.vec2point(vertex1);
+    edge2 = vertex0.vec2point(vertex2);
 
     h = r.dir.cross(edge2);
     a = edge1.dot(h);
@@ -59,13 +58,20 @@ bool Mesh::TriangleIntersect (Ray r, Face f, Intersection *isect) {
     if (t > EPSILON) // ray intersection
     {
         isect->p = r.o + (r.dir * t);
+        printf("Intersection point: %f %f %f\n", isect->p.X, isect->p.Y, isect->p.Z);
+        printf("depth: %f\n", t);
+        printf("Ray direction: %f %f %f\n", r.dir.X, r.dir.Y, r.dir.Z);
+        printf("Ray origin: %f %f %f\n", r.o.X, r.o.Y, r.o.Z);
+        printf("Vertex 0: %f %f %f\n", vertex0.X, vertex0.Y, vertex0.Z);
+        printf("Vertex 1: %f %f %f\n", vertex1.X, vertex1.Y, vertex1.Z);
+        printf("Vertex 2: %f %f %f\n", vertex2.X, vertex2.Y, vertex2.Z);
         isect->gn = f.geoNormal;
+        isect->depth = t;
         // preencher shading
         isect->wo = Vector(-r.dir.X,-r.dir.Y,-r.dir.Z);
         return true;
     }
     else {// This means that there is a line intersection but not a ray intersection.
-        printf("4\n");
         return false;
     }
 }

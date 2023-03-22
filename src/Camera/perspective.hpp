@@ -11,6 +11,7 @@
 #include "camera.hpp"
 #include "ray.hpp"
 #include "vector.hpp"
+#include <cstdio>
 
 class Perspective: public Camera {
     Point Eye, At;
@@ -24,7 +25,7 @@ public:
         Vector f = (this->Eye.vec2point(this->At));
         f.normalize();
 
-        Vector r = f.cross(this->Up);
+        Vector r = this->Up.cross(f);
         r.normalize();
 
         c2w[0][0] = r.X;

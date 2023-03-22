@@ -16,6 +16,7 @@
 #include "ray.hpp"
 #include "intersection.hpp"
 #include "BRDF.hpp"
+#include "Phong.hpp"
 
 class Scene {
     std::vector <Primitive> prims;
@@ -32,6 +33,27 @@ public:
         std::cout << "#primitives = " << numPrimitives << " ; ";
         std::cout << "#lights = " << numLights << " ; ";
         std::cout << "#materials = " << numBRDFs << " ;" << std::endl;
+
+        // print materials
+        for (int i=0; i<numBRDFs; i++) {
+            std::cout << "Material " << i << " : ";
+            //convert to Phong and print values
+            auto phong = (Phong*) &BRDFs[i];
+            if (phong) {
+                std::cout << "Phong : \n";
+                //print Ka RGB
+                std::cout << "Ka = " << phong->Ka.R << " " << phong->Ka.G << " " << phong->Ka.B << " ; \n";
+                //print Kd RGB
+                std::cout << "Kd = " << phong->Kd.R << " " << phong->Kd.G << " " << phong->Kd.B << " ; \n";
+                //print Ks RGB
+                std::cout << "Ks = " << phong->Ks.R << " " << phong->Ks.G << " " << phong->Ks.B << " ; \n";
+            }
+            else {
+                std::cout << "Unknown material type" << std::endl;
+            }
+
+        }
+
     }
 };
 
