@@ -22,10 +22,13 @@ void StandardRenderer::Render () {
             RGB color;
             // Generate Ray (camera)
             cam->GenerateRay(x,y,&primary);
+            printf("generated\n");
             // trace ray (scene)
             intersected = scene->trace(primary,&isect);
+            printf("intersect\n");
             // shade this intersection (shader)
             color = this->shd->shade(intersected,isect);
+            printf("shade\n");
             // write the result into the image frame buffer (image)
             img->set(x,y,color);
             

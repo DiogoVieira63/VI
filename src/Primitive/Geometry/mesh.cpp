@@ -7,20 +7,7 @@
 
 #include "mesh.hpp"
 #include <iostream>
-/*
-void Mesh::GetUVs(Point uv[3])  {
-    Mesh *mesh = new Mesh();
-    if (mesh->uv) {
-        uv[0] = mesh->uv[v[0]];
-        uv[1] = mesh->uv[v[1]];
-        uv[2] = mesh->uv[v[2]];
-    } else {
-        uv[0] = Point(0, 0);
-        uv[1] = Point(1, 0);
-        uv[2] = Point(1, 1);
-    }
-}
-*/
+
 // see pbrt book (3rd ed.), sec 3.6.2, pag 2
 
 bool Mesh::TriangleIntersect (Ray r, Face f, Intersection *isect) {
@@ -58,13 +45,12 @@ bool Mesh::TriangleIntersect (Ray r, Face f, Intersection *isect) {
     if (t > EPSILON) // ray intersection
     {
         isect->p = r.o + (r.dir * t);
-        printf("Intersection point: %f %f %f\n", isect->p.X, isect->p.Y, isect->p.Z);
-        printf("depth: %f\n", t);
-        printf("Ray direction: %f %f %f\n", r.dir.X, r.dir.Y, r.dir.Z);
-        printf("Ray origin: %f %f %f\n", r.o.X, r.o.Y, r.o.Z);
-        printf("Vertex 0: %f %f %f\n", vertex0.X, vertex0.Y, vertex0.Z);
-        printf("Vertex 1: %f %f %f\n", vertex1.X, vertex1.Y, vertex1.Z);
-        printf("Vertex 2: %f %f %f\n", vertex2.X, vertex2.Y, vertex2.Z);
+        //printf("depth: %f\n", t);
+        //printf("Ray direction: %f %f %f\n", r.dir.X, r.dir.Y, r.dir.Z);
+        //printf("Ray origin: %f %f %f\n", r.o.X, r.o.Y, r.o.Z);
+        //printf("Vertex 0: %f %f %f\n", vertex0.X, vertex0.Y, vertex0.Z);
+        //printf("Vertex 1: %f %f %f\n", vertex1.X, vertex1.Y, vertex1.Z);
+        //printf("Vertex 2: %f %f %f\n", vertex2.X, vertex2.Y, vertex2.Z);
         isect->gn = f.geoNormal;
         isect->depth = t;
         // preencher shading
@@ -97,6 +83,8 @@ bool Mesh::intersect (Ray r, Intersection *isect) {
             min_isect = curr_isect;
         }
     }
+    *isect = min_isect;
+
     
     return intersect;
 }

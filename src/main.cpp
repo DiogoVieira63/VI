@@ -20,8 +20,8 @@ int main(int argc, const char * argv[]) {
     Shader *shd;
     bool success;
 
-    //success = scene.Load("/home/lau/Desktop/Universidade/VI/VI/src/models/cornell_box.obj");
-    success = scene.Load("../models/cube.obj");
+    success = scene.Load("/home/lau/Desktop/Universidade/VI/VI/src/models/cornell_box.obj");
+    //success = scene.Load("../models/cube.obj");
     
     if (!success) {
         std::cout << "ERROR!! :o\n";
@@ -33,19 +33,19 @@ int main(int argc, const char * argv[]) {
 
     // add an ambient light to the scene
     AmbientLight ambient(RGB(0.9,0.9,0.9));
-    scene.lights.push_back(ambient);
+    scene.lights.push_back(&ambient);
     scene.numLights++;
 
     // Image resolution
-    const int W= 640;
-    const int H= 480;
+    const int W= 1024;
+    const int H= W;
 
     img = new ImagePPM(W,H);
     
     // Camera parameters
-    const Point Eye ={0,0,0}, At={0,0,1};
+    const Point Eye ={280,275,-330}, At={280,265,0};
     const Vector Up={0,1,0};
-    const float fovW = 3.14f/3.f, fovH = 3.14f/3.f;
+    const float fovW = 3.14f/2.f, fovH = fovW * H/W;
     cam = new Perspective(Eye, At, Up, W, H, fovW, fovH);
 
     // create the shader

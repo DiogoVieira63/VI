@@ -17,17 +17,14 @@ typedef struct BB {
     Point min, max;
     bool intersect (Ray r) {
         Vector invRaydir = Vector(1/r.dir.X,1/r.dir.Y,1/r.dir.Z);
-        Vector tLower = r.o.vec2point(min).cross(invRaydir);
-        Vector tUpper = r.o.vec2point(max).cross(invRaydir);
+        Vector tLower = r.o.vec2point(min);
+        Vector tUpper = r.o.vec2point(max);
 
-        Vector tMins = tLower.min(tUpper);
-        Vector tMaxes = tLower.max(tUpper);
+        tLower = Vector(tLower.X * invRaydir.X,tLower.Y * invRaydir.Y,tLower.Z * invRaydir.Z);
+        tUpper = Vector(tUpper.X * invRaydir.X,tUpper.Y * invRaydir.Y,tUpper.Z * invRaydir.Z);
 
-        float tMn = tMins.MaxComponent();
-        float tMx = tMaxes.MinComponent();
-
-        float tBoxMin = (0.0f < tMn) ? tMn : 0.0f; // deveria haver um r.tMin... por enquanto usei 0
-        float tBoxMax = (r.tMax < tMx) ? tMx : r.tMax;
+        float tBoxMin = tLower.MaxComponent();
+        float tBoxMax = tUpper.MinComponent();
 
         return tBoxMin <= tBoxMax;
 

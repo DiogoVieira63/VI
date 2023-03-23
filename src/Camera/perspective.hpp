@@ -28,6 +28,9 @@ public:
         Vector r = this->Up.cross(f);
         r.normalize();
 
+        this->Up = r.cross(f);
+        this->Up.normalize();
+
         c2w[0][0] = r.X;
         c2w[0][1] = r.Y;
         c2w[0][2] = r.Z;

@@ -53,6 +53,8 @@ static void PrintInfo (const ObjReader myObj) {
         
         printf("There are %lu material indexes\n", it_shape->mesh.material_ids.size());
     }
+
+
     
 }
 
@@ -82,7 +84,7 @@ bool Scene::Load (const std::string &fname) {
         m->Kd =RGB(mat->diffuse[0],mat->diffuse[1], mat->diffuse[2]);
         m->Ks =RGB(mat->specular[0],mat->specular[1], mat->specular[2]);
         m->Ka = RGB(mat->ambient[0],mat->ambient[1], mat->ambient[2]);
-        this->BRDFs.push_back(*m);
+        this->BRDFs.push_back(m);
         this->numBRDFs++;
     }
 
@@ -104,6 +106,8 @@ bool Scene::Load (const std::string &fname) {
 
             Face* face = new Face();
 
+
+
             // each 3 consecutives vertices form a face (triangle)
 
             Point myVertex[3];
@@ -119,11 +123,13 @@ bool Scene::Load (const std::string &fname) {
                     mesh->addVertice(myVertex[v]);
                     face->vert_ndx[v] = mesh->numVertices-1;
                 }
+                face->bb.update(myVertex[v]);
             }
+
             mesh->faces.push_back(*face);
             mesh->numFaces++;
         }
-        this->prims.push_back(*p);
+        this->prims.push_back(p);
         this->numPrimitives++;
     }
 
@@ -131,8 +137,7 @@ bool Scene::Load (const std::string &fname) {
     return true;
 }
 
-bool Scene::
-trace (Ray r, Intersection *isect) {
+bool Scene::trace (Ray r, Intersection *isect) {
     Intersection curr_isect;
     bool intersection = false;    
     
@@ -140,11 +145,11 @@ trace (Ray r, Intersection *isect) {
     
     // iterate over all primitives
     for (auto prim_itr = prims.begin() ; prim_itr != prims.end() ; prim_itr++) {
-        if (prim_itr->g->intersect(r, &curr_isect)) {
+        if ((*prim_itr)->g->intersect(r, &curr_isect)) {
             if (!intersection) { // first intersection
                 intersection = true;
                 *isect = curr_isect;
-                isect->f = &BRDFs[prim_itr->material_ndx];
+                isect->f = BRDFs[(*prim_itr)->material_ndx];
             }
             else if (curr_isect.depth < isect->depth) {
                 *isect = curr_isect;

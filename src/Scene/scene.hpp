@@ -19,10 +19,10 @@
 #include "Phong.hpp"
 
 class Scene {
-    std::vector <Primitive> prims;
-    std::vector <BRDF> BRDFs;
+    std::vector <Primitive *>  prims;
+    std::vector <BRDF *> BRDFs;
 public:
-    std::vector <Light> lights;
+    std::vector <Light *> lights;
     int numPrimitives, numLights, numBRDFs;
 
     Scene (): numPrimitives(0), numLights(0), numBRDFs(0) {}
@@ -38,7 +38,7 @@ public:
         for (int i=0; i<numBRDFs; i++) {
             std::cout << "Material " << i << " : ";
             //convert to Phong and print values
-            auto phong = (Phong*) &BRDFs[i];
+            auto phong = (Phong*) BRDFs[i];
             if (phong) {
                 std::cout << "Phong : \n";
                 //print Ka RGB
