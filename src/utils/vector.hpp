@@ -133,6 +133,10 @@ public:
     bool equals(Point other){
         return this->X == other.X && this->Y == other.Y && this->Z == other.Z;
     }
+
+    bool isZero(){
+        return this->X == 0 && this->Y == 0 && this->Z == 0;
+    }
 };
 
 #endif /* vector_hpp */

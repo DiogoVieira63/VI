@@ -16,12 +16,12 @@ RGB AmbientShader::shade(bool intersected, Intersection isect) {
         return (background);
     }
 
-    printf("init\n");
+
     auto *f = (Phong *)isect.f;
-    RGB Ka = f->Ka;
-    printf("other\n");
-    printf("%f %f %f\n", Ka.R,Ka.G,Ka.B);
+    // if no material, return background
+
     if (f->Ka.isZero()) return color;
+    RGB Ka = f->Ka;
 
     // ambient shade
     // Loop over scene's light sources and process Ambient Lights

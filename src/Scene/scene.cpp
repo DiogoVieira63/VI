@@ -79,7 +79,7 @@ bool Scene::Load (const std::string &fname) {
     const std::vector<shape_t> shps = myObjReader.GetShapes();
     const std::vector<material_t> materials = myObjReader.GetMaterials();
     for (auto mat = materials.begin(); mat != materials.end(); mat++){
-        Phong *m = new Phong();
+        auto *m = new Phong();
 
         m->Kd =RGB(mat->diffuse[0],mat->diffuse[1], mat->diffuse[2]);
         m->Ks =RGB(mat->specular[0],mat->specular[1], mat->specular[2]);
@@ -93,7 +93,7 @@ bool Scene::Load (const std::string &fname) {
     // iterate over shapes
     for (auto shp = shps.begin() ; shp != shps.end() ; shp++) {
 
-        Primitive *p = new Primitive ();
+        auto *p = new Primitive ();
         Mesh* mesh = new Mesh();
         p->g = mesh;
 
@@ -101,13 +101,8 @@ bool Scene::Load (const std::string &fname) {
         auto indices = shp->mesh.indices;
         p->material_ndx= shp->mesh.material_ids[0];
 
-
         for (auto vertex = indices.begin() ; vertex != indices.end() ; ) {
-
             Face* face = new Face();
-
-
-
             // each 3 consecutives vertices form a face (triangle)
 
             Point myVertex[3];
@@ -148,10 +143,11 @@ bool Scene::trace (Ray r, Intersection *isect) {
         if ((*prim_itr)->g->intersect(r, &curr_isect)) {
             if (!intersection) { // first intersection
                 intersection = true;
+                curr_isect.f = BRDFs[(*prim_itr)->material_ndx];
                 *isect = curr_isect;
-                isect->f = BRDFs[(*prim_itr)->material_ndx];
             }
             else if (curr_isect.depth < isect->depth) {
+                curr_isect.f = BRDFs[(*prim_itr)->material_ndx];
                 *isect = curr_isect;
             }
         }

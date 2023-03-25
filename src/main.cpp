@@ -20,8 +20,9 @@ int main(int argc, const char * argv[]) {
     Shader *shd;
     bool success;
 
-    success = scene.Load("/home/lau/Desktop/Universidade/VI/VI/src/models/cornell_box.obj");
-    //success = scene.Load("../models/cube.obj");
+    //success = scene.Load("/home/lau/Desktop/Universidade/VI/VI/src/models/cornell_box.obj");
+    success = scene.Load("../models/cornell_box.obj");
+    //success = scene.Load("../models/cornell_box_back.obj");
     
     if (!success) {
         std::cout << "ERROR!! :o\n";
@@ -44,7 +45,7 @@ int main(int argc, const char * argv[]) {
     
     // Camera parameters
     const Point Eye ={280,275,-330}, At={280,265,0};
-    const Vector Up={0,1,0};
+    const Vector Up={0,-1,0};
     const float fovW = 3.14f/2.f, fovH = fovW * H/W;
     cam = new Perspective(Eye, At, Up, W, H, fovW, fovH);
 

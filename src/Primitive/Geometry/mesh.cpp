@@ -12,10 +12,10 @@
 
 bool Mesh::TriangleIntersect (Ray r, Face f, Intersection *isect) {
 
-    if(!f.bb.intersect(r)) {
-        return false;  // pp do prof
-    }
-    // print ray
+
+    bool intersected = f.bb.intersect(r);
+    if (!intersected) return false;
+
     const float EPSILON = 0.0000001;
     Point vertex0 = this->vertices[f.vert_ndx[0]];
     Point vertex1 = this->vertices[f.vert_ndx[1]];
@@ -23,6 +23,7 @@ bool Mesh::TriangleIntersect (Ray r, Face f, Intersection *isect) {
 
     Vector edge1, edge2, h, s, q;
     float a,i,u,v;
+
     edge1 = vertex0.vec2point(vertex1);
     edge2 = vertex0.vec2point(vertex2);
 
@@ -68,9 +69,7 @@ bool Mesh::intersect (Ray r, Intersection *isect) {
     Intersection min_isect, curr_isect;
     float min_depth=MAXFLOAT;
     // intersect the ray with the mesh BB
-    
-    if (!intersect) return false;
-    
+
     // If it intersects then loop through the faces
     intersect = false;
     for (auto face_it=faces.begin() ; face_it != faces.end() ; face_it++) {
@@ -84,8 +83,6 @@ bool Mesh::intersect (Ray r, Intersection *isect) {
         }
     }
     *isect = min_isect;
-
-    
     return intersect;
 }
 

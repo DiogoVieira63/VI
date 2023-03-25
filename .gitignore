@@ -10,5 +10,6 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 src/cmake-build-debug
+src/cmake-build-release
 cmake-build-debug
 images

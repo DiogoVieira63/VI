@@ -14,7 +14,8 @@ class Ray {
 public:
     Point o; // ray origin
     Vector dir; // ray direction
-    float tMax; // ray maximum distance
+    //float tMax; // ray maximum distance
+    int x,y;  // pixel associated with this pixel
     Ray () {}
     Ray (Point o, Vector d): o(o),dir(d) {}
     ~Ray() {}
