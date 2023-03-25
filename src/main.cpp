@@ -57,9 +57,11 @@ int main(int argc, const char * argv[]) {
     // render
     myRender.Render();
 
+    printf("Rendering done!\n");
     // save the image
     img->Save("../images/MyImage.ppm");
-    
+    printf("Image saved!\n");
+
     std::cout << "That's all, folks!" << std::endl;
     return 0;
 }

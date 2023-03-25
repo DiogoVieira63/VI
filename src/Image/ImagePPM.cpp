@@ -27,6 +27,7 @@ bool ImagePPM::Save (std::string filename) {
     
     // convert from float to {0,1,..., 255}
     ToneMap();
+    printf("ToneMap\n");
 
     // write imageToSave to file
     if (this->W == 0 || this->H == 0) {
@@ -50,10 +51,12 @@ bool ImagePPM::Save (std::string filename) {
             ofs << r << g << b;
         }
         ofs.close();
+        return true;
     }
     catch (const char *err) {
         fprintf(stderr, "%s\n", err);
         ofs.close();
+        return false;
     }
 
 }
