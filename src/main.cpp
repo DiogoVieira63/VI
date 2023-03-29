@@ -22,6 +22,7 @@ int main(int argc, const char * argv[]) {
 
     //success = scene.Load("/home/lau/Desktop/Universidade/VI/VI/src/models/cornell_box.obj");
     success = scene.Load("../models/cornell_box.obj");
+
     //success = scene.Load("../models/cornell_box_back.obj");
     
     if (!success) {

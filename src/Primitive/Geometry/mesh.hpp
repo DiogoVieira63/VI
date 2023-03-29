@@ -39,7 +39,10 @@ public:
 
     int getIndexVertices(Point K);
     
-    Mesh(): numFaces(0), numVertices(0), numNormals(0) {}
+    Mesh(): numFaces(0), numVertices(0), numNormals(0) {
+        //this->bb.min = Point(MAXFLOAT,MAXFLOAT,MAXFLOAT);
+        //this->bb.max = Point(-MAXFLOAT,-MAXFLOAT,-MAXFLOAT);
+    }
 };
 
 #endif /* mesh_hpp */

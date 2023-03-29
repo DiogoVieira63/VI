@@ -69,6 +69,7 @@ bool Mesh::intersect (Ray r, Intersection *isect) {
     Intersection min_isect, curr_isect;
     float min_depth=MAXFLOAT;
     // intersect the ray with the mesh BB
+    if (!bb.intersect(r)) return false;
 
     // If it intersects then loop through the faces
     intersect = false;
@@ -98,6 +99,7 @@ int Mesh::getIndexVertices(Point K){
 }
 
 void Mesh::addVertice(Point p){
+    this->bb.update(p);
     vertices.push_back(p);
     numVertices++;
 }

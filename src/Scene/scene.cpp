@@ -84,6 +84,7 @@ bool Scene::Load (const std::string &fname) {
         m->Kd =RGB(mat->diffuse[0],mat->diffuse[1], mat->diffuse[2]);
         m->Ks =RGB(mat->specular[0],mat->specular[1], mat->specular[2]);
         m->Ka = RGB(mat->ambient[0],mat->ambient[1], mat->ambient[2]);
+        m->Kt = RGB(mat->transmittance[0],mat->transmittance[1], mat->transmittance[2]);
         this->BRDFs.push_back(m);
         this->numBRDFs++;
     }
@@ -103,6 +104,8 @@ bool Scene::Load (const std::string &fname) {
 
         for (auto vertex = indices.begin() ; vertex != indices.end() ; ) {
             Face* face = new Face();
+            //face->bb.min = Point(MAXFLOAT, MAXFLOAT, MAXFLOAT);
+            //face->bb.max = Point(-MAXFLOAT, -MAXFLOAT, -MAXFLOAT);
             // each 3 consecutives vertices form a face (triangle)
 
             Point myVertex[3];
