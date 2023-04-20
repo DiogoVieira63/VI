@@ -53,4 +53,6 @@ add_executable(VI_RT
         Light/AmbientLight.hpp
         Shader/shader.hpp
         Shader/AmbientShader.cpp
-        Renderer/StandardRenderer.cpp Light/PointLight.hpp)
+        Renderer/StandardRenderer.cpp
+        Light/PointLight.hpp
+        Shader/WhittedShader.cpp)
