@@ -52,7 +52,14 @@ bool Mesh::TriangleIntersect (Ray r, Face f, Intersection *isect) {
         //printf("Vertex 0: %f %f %f\n", vertex0.X, vertex0.Y, vertex0.Z);
         //printf("Vertex 1: %f %f %f\n", vertex1.X, vertex1.Y, vertex1.Z);
         //printf("Vertex 2: %f %f %f\n", vertex2.X, vertex2.Y, vertex2.Z);
-        isect->gn = f.geoNormal;
+
+        Vector normal = f.geoNormal;
+        Vector wo = -1.f * r.dir;
+        // make sure the normal points to the same side of the surface as wo
+        normal.Faceforward(wo);
+        isect->gn = normal;
+        isect->sn = normal;
+
         isect->depth = t;
         // preencher shading
         isect->wo = Vector(-r.dir.X,-r.dir.Y,-r.dir.Z);

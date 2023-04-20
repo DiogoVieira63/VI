@@ -102,6 +102,7 @@ bool Scene::Load (const std::string &fname) {
         auto indices = shp->mesh.indices;
         p->material_ndx= shp->mesh.material_ids[0];
 
+
         for (auto vertex = indices.begin() ; vertex != indices.end() ; ) {
             Face* face = new Face();
             //face->bb.min = Point(MAXFLOAT, MAXFLOAT, MAXFLOAT);
@@ -120,9 +121,16 @@ bool Scene::Load (const std::string &fname) {
                 else{
                     mesh->addVertice(myVertex[v]);
                     face->vert_ndx[v] = mesh->numVertices-1;
+
                 }
                 face->bb.update(myVertex[v]);
             }
+
+            //calculate normal of face
+            Vector edge1 = mesh->vertices[face->vert_ndx[1]].vec2point(mesh->vertices[face->vert_ndx[0]]);
+            Vector edge2 = mesh->vertices[face->vert_ndx[2]].vec2point(mesh->vertices[face->vert_ndx[0]]);
+            face->geoNormal = edge1.cross(edge2);
+            face->geoNormal.normalize(); // ?
 
             mesh->faces.push_back(*face);
             mesh->numFaces++;
