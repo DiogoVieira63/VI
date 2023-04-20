@@ -29,6 +29,7 @@ public:
     bool Load (const std::string &fname);
     bool SetLights (void) { return true; };
     bool trace (Ray r, Intersection *isect);
+    bool visibility (Ray s, const float maxL);
     void printSummary(void) {
         std::cout << "#primitives = " << numPrimitives << " ; ";
         std::cout << "#lights = " << numLights << " ; ";

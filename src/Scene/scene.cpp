@@ -158,3 +158,20 @@ bool Scene::trace (Ray r, Intersection *isect) {
     return intersection;
 }
 
+// checks whether a point on a light source (distance maxL) is visible
+bool Scene::visibility (Ray s, const float maxL) {
+    bool visible = true;
+    Intersection curr_isect;
+
+    if (numPrimitives==0) return true;
+
+    // iterate over all primitives while visible
+    for (auto prim_itr = prims.begin() ; prim_itr != prims.end() && visible ; prim_itr++) {
+        if ((*prim_itr)->g->intersect(s, &curr_isect)) {
+            if (curr_isect.depth < maxL) {
+                visible = false;
+            }
+        }
+    }
+    return visible;
+}
