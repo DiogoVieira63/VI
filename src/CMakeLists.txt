@@ -55,4 +55,4 @@ add_executable(VI_RT
         Shader/AmbientShader.cpp
         Renderer/StandardRenderer.cpp
         Light/PointLight.hpp
-        Shader/WhittedShader.cpp)
+        Shader/WhittedShader.cpp Light/AreaLight.hpp Primitive/Geometry/Triangle.hpp Shader/DistributedShader.hpp Shader/DistributedShader.cpp)

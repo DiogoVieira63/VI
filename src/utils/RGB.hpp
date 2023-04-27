@@ -26,6 +26,15 @@ public:
         return res;
     }
 
+    RGB operator/(const float obj)
+    {
+        RGB res;
+        res.R = R / obj;
+        res.G = G / obj;
+        res.B = B / obj;
+        return res;
+    }
+
 
     RGB& operator+=(const RGB& rhs){
         this->R += rhs.R;

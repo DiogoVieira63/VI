@@ -14,6 +14,7 @@
 #include "AmbientLight.hpp"
 #include "PointLight.hpp"
 #include "WhittedShader.hpp"
+#include "DistributedShader.hpp"
 
 int main(int argc, const char * argv[]) {
     Scene scene;
@@ -23,7 +24,7 @@ int main(int argc, const char * argv[]) {
     bool success;
 
     //success = scene.Load("/home/lau/Desktop/Universidade/VI/VI/src/models/cornell_box.obj");
-    success = scene.Load("../models/cornell_box.obj");
+    success = scene.Load("../models/cornell_box_VI.obj");
 
     //success = scene.Load("../models/cornell_box_back.obj");
     
@@ -49,19 +50,29 @@ int main(int argc, const char * argv[]) {
 
     // add an ambient light to the scene
     AmbientLight *ambient = new AmbientLight(RGB(0.05,0.05,0.05));
-    scene.lights.push_back(ambient);
-    scene.numLights++;
+    //scene.lights.push_back(ambient);
+    //scene.numLights++;
 
     // add a point light to the scene
     PointLight *pl1 = new PointLight(RGB(0.65,0.65,0.65), Point(288,508,282));
-    scene.lights.push_back(pl1);
-    scene.numLights++;
+    //scene.lights.push_back(pl1);
+    //scene.numLights++;
+
+
+
+    AreaLight *al1 = new AreaLight(RGB(0.65,0.65,0.65),Point(343.0,548.0,227.0),Point(343.0,548.0,332.0),Point(213.0,548.0,332.0),Vector(0,-1,0));
+    AreaLight *al2 = new AreaLight(RGB(0.65,0.65,0.65), Point(343.0,548.0,227.0),Point(213.0,548.0,332.0),Point(213.0,548.0,227.0),Vector(0,-1,0));
+
+    scene.lights.push_back(al1);
+    scene.lights.push_back(al2);
+    scene.numLights+=2;
 
     // create the shader
     RGB background(0.05, 0.05, 0.55);
 
-    shd = new WhittedShader(&scene, background);
+    //shd = new WhittedShader(&scene, background);
     //shd = new AmbientShader(&scene, background);
+    shd = new DistributedShader(&scene,background);
 
     // declare the renderer
     StandardRenderer myRender (cam, &scene, img, shd);

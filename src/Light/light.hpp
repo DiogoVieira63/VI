@@ -14,7 +14,8 @@
 enum LightType {
     NO_LIGHT,
     AMBIENT_LIGHT,
-    POINT_LIGHT
+    POINT_LIGHT,
+    AREA_LIGHT
 } ;
 
 class Light {

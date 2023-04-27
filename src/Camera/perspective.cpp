@@ -15,8 +15,14 @@ bool Perspective::GenerateRay(const int x, const int y, Ray *r, const float *cam
     float xs, ys, xc, yc;
 
     //screen space
-    xs = (2 * ((float)x + 0.5f))/(float)this->W - 1;
-    ys = (2 * ((float)y + 0.5f))/(float)this->H - 1;
+    if(cam_jitter==NULL) {
+        xs = (2 * ((float) x + 0.5f)) / (float) this->W - 1;
+        ys = (2 * ((float) y + 0.5f)) / (float) this->H - 1;
+    }
+    else {
+        xs = (2 * ((float) x + cam_jitter[0])) / (float) this->W - 1;
+        ys = (2 * ((float) y + cam_jitter[1])) / (float) this->H - 1;
+    }
     //ys = (2 * ((float)this->H - (float)y -1.0f + 0.5f))/(float)this->H - 1;
 
     //camera space
