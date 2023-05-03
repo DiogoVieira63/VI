@@ -26,6 +26,7 @@ public:
     Vector operator +(const Vector &p) const { return {X+p.X, Y+p.Y, Z+p.Z};}
     Vector operator *(const float f) const { return {f*X, f*Y, f*Z};}
     Vector operator *(const double f) const { return {(float)(f*X), (float)(f*Y), (float)(f*Z)};}
+    Vector operator /(const float f) const { return {X/f, Y/f, Z/f};}
     friend Vector operator*(const float f, const Vector& p) {
         return p*f;
     }
@@ -94,6 +95,26 @@ public:
         double v = sqrt(pow(v2.X,2) + pow(v2.Y,2) + pow(v2.Z,2));
 
         return (v1 < v) ? Vector(X,Y,Z) : v2;
+    }
+
+    // Generate an orthonormal coordinate system around this vector (must be normalized)
+    // returns the 2 new axis orthogonal top the vector
+    void CoordinateSystem(Vector *v2, Vector *v3) {
+        if (abs(X) > abs(Y))
+            *v2 = Vector(-Z, 0, X) / sqrtf(X * X + Z * Z);
+        else
+            *v2 = Vector(0, Z, -Y) / sqrtf(Y * Y + Z * Z);
+        *v3 = cross(*v2);
+    }
+    // returns a new vector, which is this vector rotated to the
+    // reference system defined by Rx, Ry, Rz
+    Vector Rotate (Vector Rx, Vector Ry, Vector Rz) {
+        Vector vec;
+
+        vec.X = X * Rx.X + Y * Ry.X + Z * Rz.X;
+        vec.Y = X * Rx.Y + Y * Ry.Y + Z * Rz.Y;
+        vec.Z = X * Rx.Z + Y * Ry.Z + Z * Rz.Z;
+        return vec;
     }
 
 

@@ -49,9 +49,9 @@ int main(int argc, const char * argv[]) {
     cam = new Perspective(Eye, At, Up, W, H, fovW, fovH);
 
     // add an ambient light to the scene
-    AmbientLight *ambient = new AmbientLight(RGB(0.05,0.05,0.05));
-    //scene.lights.push_back(ambient);
-    //scene.numLights++;
+    AmbientLight *ambient = new AmbientLight(RGB(0.3,0.3,0.3));
+    scene.lights.push_back(ambient);
+    scene.numLights++;
 
     // add a point light to the scene
     PointLight *pl1 = new PointLight(RGB(0.65,0.65,0.65), Point(288,508,282));
@@ -59,12 +59,44 @@ int main(int argc, const char * argv[]) {
     //scene.numLights++;
 
 
-
-    AreaLight *al1 = new AreaLight(RGB(0.65,0.65,0.65),Point(343.0,548.0,227.0),Point(343.0,548.0,332.0),Point(213.0,548.0,332.0),Vector(0,-1,0));
-    AreaLight *al2 = new AreaLight(RGB(0.65,0.65,0.65), Point(343.0,548.0,227.0),Point(213.0,548.0,332.0),Point(213.0,548.0,227.0),Vector(0,-1,0));
+    // Luz central
+    AreaLight *al1 = new AreaLight(RGB(1,1,1),Point(343.0,547.9,227.0),Point(343.0,547.9,332.0),Point(213.0,547.9,332.0),Vector(0,-1,0));
+    AreaLight *al2 = new AreaLight(RGB(1,1,1), Point(213.0,547.9,332.0),Point(213.0,547.9,227.0),Point(343.0,547.9,227.0),Vector(0,-1,0));
 
     scene.lights.push_back(al1);
     scene.lights.push_back(al2);
+    scene.numLights+=2;
+
+    // Luz canto frente direito
+    AreaLight *al3 = new AreaLight(RGB(0.70,0.70,0.70),Point(93.0,547.9,57.0),Point(93.0,547.9,82.0),Point(43.0,547.9,82.0),Vector(0,-1,0));
+    AreaLight *al4 = new AreaLight(RGB(0.70,0.70,0.70), Point(43.0,547.9,82.0),Point(43.0,547.9,57.0),Point(93.0,547.9,57.0),Vector(0,-1,0));
+
+    scene.lights.push_back(al3);
+    scene.lights.push_back(al4);
+    scene.numLights+=2;
+
+    // Luz canto trás esquerda
+    AreaLight *al5 = new AreaLight(RGB(0.70,0.70,0.70),Point(493.0,547.9,457.0),Point(493.0,547.9,482.0),Point(443.0,547.9,482.0),Vector(0,-1,0));
+    AreaLight *al6 = new AreaLight(RGB(0.70,0.70,0.70), Point(443.0,547.9,482.0),Point(443.0,547.9,457.0),Point(493.0,547.9,457.0),Vector(0,-1,0));
+
+    scene.lights.push_back(al5);
+    scene.lights.push_back(al6);
+    scene.numLights+=2;
+
+    // Luz canto trás direita
+    AreaLight *al7 = new AreaLight(RGB(0.70,0.70,0.70),Point(93.0,547.9,457.0),Point(93.0,547.9,482.0),Point(43.0,547.9,482.0),Vector(0,-1,0));
+    AreaLight *al8 = new AreaLight(RGB(0.70,0.70,0.70), Point(43.0,547.9,482.0),Point(43.0,547.9,457.0),Point(93.0,547.9,457.0),Vector(0,-1,0));
+
+    scene.lights.push_back(al7);
+    scene.lights.push_back(al8);
+    scene.numLights+=2;
+
+    // Luz canto frente esquerda
+    AreaLight *al9= new AreaLight(RGB(0.70,0.70,0.70),Point(493.0,547.9,57.0),Point(493.0,547.9,82.0),Point(443.0,547.9,82.0),Vector(0,-1,0));
+    AreaLight *al10 = new AreaLight(RGB(0.70,0.70,0.70), Point(443.0,547.9,82.0),Point(443.0,547.9,57.0),Point(493.0,547.9,57.0),Vector(0,-1,0));
+
+    scene.lights.push_back(al9);
+    scene.lights.push_back(al10);
     scene.numLights+=2;
 
     // create the shader

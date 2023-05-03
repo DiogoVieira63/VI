@@ -13,7 +13,7 @@ void StandardRenderer::Render () {
     int x,y,ss;
 
     cam->getResolution(&W,&H);
-    const int spp=32;
+    const int spp=16;
 
 
     // main rendering loop: get primary rays from the camera until done

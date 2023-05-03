@@ -172,6 +172,7 @@ bool Scene::trace (Ray r, Intersection *isect) {
         if ((*l)->type == AREA_LIGHT) {
             AreaLight *al = (AreaLight *) *l;
             if (al->gem->intersect(r, &curr_isect)) {
+                //printf("Intersect light\n");
                 if (!intersection) { // first intersection
                     intersection = true;
                     *isect = curr_isect;
