@@ -13,7 +13,7 @@ void StandardRenderer::Render () {
     int x,y,ss;
 
     cam->getResolution(&W,&H);
-    const int spp=16;
+    const int spp=32;
 
 
     // main rendering loop: get primary rays from the camera until done
@@ -29,7 +29,7 @@ void StandardRenderer::Render () {
                 jitterV[1] = ((float)rand()) / (float)RAND_MAX;
                 cam->GenerateRay(x, y, &primary, jitterV);
                 intersected = scene->trace(primary, &isect);
-                RGB this_color = shd->shade (intersected, isect);
+                RGB this_color = shd->shade (intersected, isect,0);
                 color += this_color;
 
                 // Generate Ray (camera)
@@ -41,7 +41,8 @@ void StandardRenderer::Render () {
                 // write the result into the image frame buffer (image)
 
             }
-            color = color / spp;
+            color = color / spp*2;
+            //printf("color: %f %f %f\n",color.R,color.G,color.B);
             img->set(x,y,color);
             
         } // loop over columns

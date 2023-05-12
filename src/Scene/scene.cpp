@@ -86,6 +86,7 @@ bool Scene::Load (const std::string &fname) {
         m->Ks =RGB(mat->specular[0],mat->specular[1], mat->specular[2]);
         m->Ka = RGB(mat->ambient[0],mat->ambient[1], mat->ambient[2]);
         m->Kt = RGB(mat->transmittance[0],mat->transmittance[1], mat->transmittance[2]);
+        m->Ns = mat->shininess;
         this->BRDFs.push_back(m);
         this->numBRDFs++;
     }

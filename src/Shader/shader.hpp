@@ -17,7 +17,7 @@ protected:
 public:
     Shader (Scene *_scene): scene(_scene) {}
     ~Shader () {}
-    virtual RGB shade (bool intersected, Intersection isect) {return RGB();}
+    virtual RGB shade (bool intersected, Intersection isect,int depth) {return RGB();}
 };
 
 #endif /* shader_hpp */
