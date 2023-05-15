@@ -82,6 +82,7 @@ RGB DistributedShader::directLighting (Intersection isect, Phong *f) {
     }
     return color / (float)scene->numLights;//* scene->numLights;
 }
+
 */
 RGB DistributedShader::directLighting (Intersection isect, Phong *f) {
     RGB color(0.,0.,0.);
@@ -163,6 +164,7 @@ RGB DistributedShader::directLighting (Intersection isect, Phong *f) {
     return color ;//* scene->numLights;
 }
 
+
 RGB DistributedShader::specularReflection (Intersection isect, Phong *f) {
 
     // generate the specular ray
@@ -175,13 +177,13 @@ RGB DistributedShader::specularReflection (Intersection isect, Phong *f) {
     // trace ray
     bool intersected = scene->trace(specular, &s_isect);
     // shade this intersection
-    RGB color = shade (intersected, s_isect);
+    RGB color = shade (intersected, s_isect,0);
     return color;
 }
 
 
 
-RGB DistributedShader::shade(bool intersected, Intersection isect) {
+RGB DistributedShader::shade(bool intersected, Intersection isect,int depth) {
     RGB color(0.,0.,0.);
     if (!intersected) return (background);
 

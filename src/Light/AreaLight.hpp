@@ -25,7 +25,7 @@ public:
     ~AreaLight() { delete gem; }
 
     RGB L(){
-        return power;
+        return RGB(1,1,1);
     }
 
     // return a point p, RGB radiance and pdf given a rand pair (0, 1(

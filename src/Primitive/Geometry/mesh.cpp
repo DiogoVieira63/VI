@@ -46,6 +46,11 @@ bool Mesh::TriangleIntersect (Ray r, Face f, Intersection *isect) {
     if (t > EPSILON) // ray intersection
     {
         isect->p = r.o + (r.dir * t);
+
+        float px = std::abs(isect->p.X) < pow(1,-4) ? 0 : isect->p.X;
+        float py = std::abs(isect->p.Y) < pow(1,-4) ? 0 : isect->p.Y;
+        float pz = std::abs(isect->p.Z) < pow(1,-4) ? 0 : isect->p.Z;
+        isect->p = Point(px,py,pz);
         //printf("depth: %f\n", t);
         //printf("Ray direction: %f %f %f\n", r.dir.X, r.dir.Y, r.dir.Z);
         //printf("Ray origin: %f %f %f\n", r.o.X, r.o.Y, r.o.Z);
@@ -80,15 +85,18 @@ bool Mesh::intersect (Ray r, Intersection *isect) {
 
     // If it intersects then loop through the faces
     intersect = false;
+    int index = 0;
     for (auto face_it=faces.begin() ; face_it != faces.end() ; face_it++) {
         intersect_this_face = TriangleIntersect(r, *face_it, &curr_isect);
         if (!intersect_this_face) continue;
-        
+        min_isect.FaceID = index;
         intersect = true;
         if (curr_isect.depth < min_depth) {  // this is closer
             min_depth = curr_isect.depth;
             min_isect = curr_isect;
+            min_isect.FaceID = index;
         }
+        index ++;
     }
     *isect = min_isect;
     return intersect;

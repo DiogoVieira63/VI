@@ -9,16 +9,15 @@
 #include <random>
 
 void StandardRenderer::Render () {
-    int W=0,H=0;  // resolution
+    int W,H;  // resolution
     int x,y,ss;
 
     cam->getResolution(&W,&H);
-    const int spp=32;
-
+    const int spp=2048;
 
     // main rendering loop: get primary rays from the camera until done
-    for (y=0 ; y<  H ; y++) {  // loop over rows
-        for (x=0; x< W ; x++) { // loop over columns
+    for (y=0; y < H ; y++) {  // loop over rows
+        for (x=0; x< W; x++) { // loop over columns
             Ray primary;
             Intersection isect;
             bool intersected;
@@ -41,10 +40,13 @@ void StandardRenderer::Render () {
                 // write the result into the image frame buffer (image)
 
             }
-            color = color / spp*2;
+
+
+            color = color / spp;
             //printf("color: %f %f %f\n",color.R,color.G,color.B);
             img->set(x,y,color);
-            
-        } // loop over columns
+
+        }
+        // loop over columns
     }   // loop over rows
 }

@@ -119,6 +119,7 @@ RGB PathTracerShader::specularReflection (Intersection isect, Phong *f, int dept
         bool intersected = scene->trace(specular, &s_isect);
         RGB Rcolor = shade(intersected, s_isect, depth + 1);
         color = (f->Ks * Rcolor * powf(cos_theta, f->Ns) / (2.f * M_PI)) / pdf;
+
     }
 
     return color;
@@ -136,30 +137,35 @@ RGB PathTracerShader::shade(bool intersected, Intersection isect, int depth) {
 
     // get the BRDF
     Phong *f = (Phong *)isect.f;
-    /*
+
     float rnd_russian = ((float)rand()) / ((float)RAND_MAX);
     if (depth <MAX_DEPTH  || rnd_russian < continue_p) {
         RGB lcolor;
+
+        if (!f->Ks.isZero()) lcolor+= specularReflection (isect, f, depth+1);
+        if (!f->Kd.isZero()) lcolor+= diffuseReflection (isect, f, depth+1);
+
+        /*
         // random select between specular and diffuse
         float s_p = f->Ks.Y() /(f->Ks.Y()+f->Kd.Y());
         float rnd = ((float)rand()) / ((float)RAND_MAX);
-        if (rnd < s_p)
-        //    // do specular
+        bool specular = rnd < s_p;
+        if (specular)
+            // do specular
             lcolor = specularReflection (isect, f, depth+1) / s_p;
         else
             // do diffuse
             lcolor = diffuseReflection (isect, f, depth+1) / (1.-s_p);
 
+        */
         if (depth<MAX_DEPTH)
             color += lcolor;
-        else color += lcolor / continue_p;
+        else {
+            color += lcolor * continue_p;
+            //printf("%f\n", continue_p);
+        }
+    }
 
-    }
-     */
-    if (depth <MAX_DEPTH) {
-        if (!f->Ks.isZero()) color+= specularReflection (isect, f, depth+1);
-        if (!f->Kd.isZero()) color+= diffuseReflection (isect, f, depth+1);
-    }
     // if there is a diffuse component do direct light
     if (!f->Kd.isZero()) color += directLighting(isect, f);
     return color;
@@ -179,17 +185,22 @@ RGB PathTracerShader::diffuseReflection (Intersection isect, Phong *f, int depth
     // generate a coordinate system from N
     Vector Rx, Ry;
     isect.gn.CoordinateSystem(&Rx, &Ry);
+    Vector rotate = D_around_Z.Rotate (Rx, Ry, isect.gn);
 
-    Ray diffuse(isect.p, D_around_Z.Rotate (Rx, Ry, isect.gn));
+    Ray diffuse(isect.p, rotate);
+
+    //printf("origin %f %f %f\n", diffuse.o.X, diffuse.o.Y, diffuse.o.Z);
     // OK, we have the ray : trace and shade it recursively
     Intersection d_isect;
     bool intersected = scene->trace(diffuse, &d_isect);
     // if light source return 0 ; handled by direct
+    RGB Rcolor;
     if (!d_isect.isLight) {
         // shade this intersection
-        RGB Rcolor = shade (intersected, d_isect, depth+1);
-        color = (f->Kd * cos_theta * Rcolor) /pdf ;
+        Rcolor = shade (intersected, d_isect, depth+1);
+        color = (f->Kd * cos_theta * Rcolor) / pdf ;
     }
+    //print color
 
     return color;
 
