@@ -112,6 +112,7 @@ f -4 -3 -2 -1
 
 o tall_block
 usemtl blue
+#usemtl mirror_mat
 v    423.0 330.0 247.0
 v    265.0 330.0 296.0
 v    314.0 330.0 456.0

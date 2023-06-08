@@ -47,16 +47,7 @@ bool Mesh::TriangleIntersect (Ray r, Face f, Intersection *isect) {
     {
         isect->p = r.o + (r.dir * t);
 
-        float px = std::abs(isect->p.X) < pow(1,-4) ? 0 : isect->p.X;
-        float py = std::abs(isect->p.Y) < pow(1,-4) ? 0 : isect->p.Y;
-        float pz = std::abs(isect->p.Z) < pow(1,-4) ? 0 : isect->p.Z;
-        isect->p = Point(px,py,pz);
-        //printf("depth: %f\n", t);
-        //printf("Ray direction: %f %f %f\n", r.dir.X, r.dir.Y, r.dir.Z);
-        //printf("Ray origin: %f %f %f\n", r.o.X, r.o.Y, r.o.Z);
-        //printf("Vertex 0: %f %f %f\n", vertex0.X, vertex0.Y, vertex0.Z);
-        //printf("Vertex 1: %f %f %f\n", vertex1.X, vertex1.Y, vertex1.Z);
-        //printf("Vertex 2: %f %f %f\n", vertex2.X, vertex2.Y, vertex2.Z);
+
 
         Vector normal = f.geoNormal;
         Vector wo = -1.f * r.dir;

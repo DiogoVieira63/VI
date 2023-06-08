@@ -25,8 +25,9 @@ public:
     ~AreaLight() { delete gem; }
 
     RGB L(){
-        return RGB(1,1,1);
+        return power;
     }
+
 
     // return a point p, RGB radiance and pdf given a rand pair (0, 1(
     // sample point: "Globbbl Illumination Compendium", pp. 12, item 18

@@ -161,7 +161,7 @@ RGB DistributedShader::directLighting (Intersection isect, Phong *f) {
         }
     } // end area light
 
-    return color ;//* scene->numLights;
+    return color * scene->numLights;//* scene->numLights;
 }
 
 

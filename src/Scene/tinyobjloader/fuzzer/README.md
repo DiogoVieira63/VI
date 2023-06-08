@@ -28,7 +28,7 @@ $ sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-8
 
 ## How to compile
 
-Fuzz target is compiled with the rest of the project when environment variable `LIB_FUZZING_ENGINE` is defined when running cmake
+Fuzz target is compiled with the rest of the project when Environment variable `LIB_FUZZING_ENGINE` is defined when running cmake
 With clang, you can compile with 
 ```
 $ export LIB_FUZZING_ENGINE=-fsanitize=fuzzer

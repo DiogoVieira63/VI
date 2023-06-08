@@ -137,10 +137,10 @@ bool Scene::Load (const std::string &fname) {
 
 
 
-            float fx = face->geoNormal.X == -0 ? 0 : face->geoNormal.X;
-            float fy= face->geoNormal.Y == -0 ? 0 : face->geoNormal.Y;
-            float fz = face->geoNormal.Z == -0 ? 0 : face->geoNormal.Z;
-            face->geoNormal = Vector(fx,fy,fz);
+            //float fx = face->geoNormal.X == -0 ? 0 : face->geoNormal.X;
+            //float fy= face->geoNormal.Y == -0 ? 0 : face->geoNormal.Y;
+            //float fz = face->geoNormal.Z == -0 ? 0 : face->geoNormal.Z;
+            //face->geoNormal = Vector(fx,fy,fz);
 
 
             mesh->faces.push_back(*face);
@@ -159,21 +159,9 @@ bool Scene::trace (Ray r, Intersection *isect) {
     bool intersection = false;    
     
     if (numPrimitives==0) return false;
-    
+
     // iterate over all primitives
-    for (auto prim_itr = prims.begin() ; prim_itr != prims.end() ; prim_itr++) {
-        if ((*prim_itr)->g->intersect(r, &curr_isect)) {
-            if (!intersection) { // first intersection
-                intersection = true;
-                curr_isect.f = BRDFs[(*prim_itr)->material_ndx];
-                *isect = curr_isect;
-            }
-            else if (curr_isect.depth < isect->depth) {
-                curr_isect.f = BRDFs[(*prim_itr)->material_ndx];
-                *isect = curr_isect;
-            }
-        }
-    }
+
 
 
     isect->isLight = false; // download new intersection.hpp
@@ -196,6 +184,25 @@ bool Scene::trace (Ray r, Intersection *isect) {
             }
         }
     }
+
+    for (auto prim_itr = prims.begin() ; prim_itr != prims.end() ; prim_itr++) {
+        if ((*prim_itr)->g->intersect(r, &curr_isect)) {
+            if (!intersection) {
+                intersection = true;
+                curr_isect.f = BRDFs[(*prim_itr)->material_ndx];
+                *isect = curr_isect;
+                isect->isLight = false;
+            }
+            else if (curr_isect.depth < isect->depth) {
+                curr_isect.f = BRDFs[(*prim_itr)->material_ndx];
+                *isect = curr_isect;
+                isect->isLight = false;
+            }
+        }
+    }
+
+
+
     return intersection;
 }
 

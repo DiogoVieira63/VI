@@ -8,27 +8,27 @@
 #include "StandardRenderer.hpp"
 #include <random>
 
-void StandardRenderer::Render () {
+void StandardRenderer::Render () { // NOLINT(openmp-use-default-none)
     int W,H;  // resolution
-    int x,y,ss;
 
     cam->getResolution(&W,&H);
-    const int spp=2048;
+    const int spp=1;
 
     // main rendering loop: get primary rays from the camera until done
-    for (y=0; y < H ; y++) {  // loop over rows
-        for (x=0; x< W; x++) { // loop over columns
-            Ray primary;
-            Intersection isect;
-            bool intersected;
+    for (int y=0; y < H; y++) {  // loop over rows
+        std::cout <<  y << std::endl;
+        for (int x=0; x< W; x++) { // loop over columns
             RGB color(0.,0.,0.);
-            for (ss=0; ss < spp;ss++) {
+            for (int ss=0; ss < spp;ss++) {
+                Ray primary;
+                Intersection isect;
+                bool intersected;
                 float jitterV[2];
                 jitterV[0] = ((float)rand()) / (float)RAND_MAX;
                 jitterV[1] = ((float)rand()) / (float)RAND_MAX;
                 cam->GenerateRay(x, y, &primary, jitterV);
                 intersected = scene->trace(primary, &isect);
-                RGB this_color = shd->shade (intersected, isect,0);
+                RGB this_color = shd->shade (intersected, isect,1);
                 color += this_color;
 
                 // Generate Ray (camera)
@@ -50,3 +50,5 @@ void StandardRenderer::Render () {
         // loop over columns
     }   // loop over rows
 }
+
+#pragma clang diagnostic pop

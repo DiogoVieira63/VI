@@ -20,17 +20,17 @@ using namespace std::chrono;
 #include "WhittedShader.hpp"
 #include "DistributedShader.hpp"
 #include "PathTracerShader.hpp"
+#include "Environment.h"
 
 int main(int argc, const char * argv[]) {
     Scene scene;
-    Perspective *cam; // Camera
+    Camera *cam; // Camera
     ImagePPM *img;    // Image
     Shader *shd;
     bool success;
     auto start = high_resolution_clock::now();
 
 
-    //success = scene.Load("/home/lau/Desktop/Universidade/VI/VI/src/models/cornell_box.obj");
     success = scene.Load("../models/cornell_box_VI.obj");
 
     //success = scene.Load("../models/cornell_box.obj");
@@ -50,10 +50,11 @@ int main(int argc, const char * argv[]) {
     img = new ImagePPM(W,H);
     
     // Camera parameters
-    const Point Eye ={280,275,-330}, At={280,265,0};
+    const Point Eye ={280,278,-100}, At={280,278,250};
     const Vector Up={0,-1,0};
     const float fovW = 3.14f/2.f, fovH = fovW * H/W;
-    cam = new Perspective(Eye, At, Up, W, H, fovW, fovH);
+    //cam = new Perspective(Eye, At, Up, W, H, fovW, fovH);
+    cam = new Environment(Eye, At, Up, W, H, fovW, fovH);
 
     // add an ambient light to the scene
     /*
@@ -68,7 +69,7 @@ int main(int argc, const char * argv[]) {
     //scene.numLights++;
 
     // Luz central
-    float light = 0.1;
+    float light = 0.05;
     AreaLight *al1 = new AreaLight(RGB(light,light,light),Point(343.0,547.9,227.0),Point(343.0,547.9,332.0),Point(213.0,547.9,332.0),Vector(0,-1,0));
     AreaLight *al2 = new AreaLight(RGB(light,light,light),Point(213.0,547.9,332.0),Point(213.0,547.9,227.0),Point(343.0,547.9,227.0),Vector(0,-1,0));
 

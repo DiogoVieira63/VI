@@ -25,4 +25,4 @@ A clear and concise description of what you expected to happen.
  - TinyObjLoader version
  - OS: [e.g. Linux]
  - Compiler  [e.g. gcc 7.3]
- - Other environment [e.g. Python version if you use python binding]
+ - Other Environment [e.g. Python version if you use python binding]

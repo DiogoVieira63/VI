@@ -21,7 +21,7 @@ class PathTracerShader: public Shader {
     float continue_p;
     int MAX_DEPTH;
 public:
-    PathTracerShader (Scene *scene, RGB bg): background(bg),Shader(scene) {continue_p = 0.5f; MAX_DEPTH=2;}
+    PathTracerShader (Scene *scene, RGB bg): background(bg),Shader(scene) {continue_p = 0.5f; MAX_DEPTH=3;}
     RGB shade (bool intersected, Intersection isect, int depth);
 };
 
