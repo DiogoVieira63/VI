@@ -27,7 +27,7 @@ int main(int argc, const char * argv[]) {
     Camera *cam; // Camera
 
     int i;
-    cout << "Please enter an integer for image format choice: \n\t 1 - PPM \n\t 2 - JPEG \n\t 3 - PFM \n\t\t>>";
+    cout << "Please enter an integer for image format choice: \n\t 1 - PPM \n\t 2 - JPEG \n\t 3 - PFM \n\t 4 - openEXR \n\t\t>>";
     cin >> i;
 
     ImagePPM *img;    // Image
@@ -141,6 +141,9 @@ int main(int argc, const char * argv[]) {
             printf("Image saved!\n");
         case 3:
             img->SavePFM("../images/MyImage.pfm");
+            printf("Image saved!\n");
+        case 4:
+            img->SavePFM("../images/MyImage.exr");
             printf("Image saved!\n");
     }
 

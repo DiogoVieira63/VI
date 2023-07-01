@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <jpeglib.h>
+#include <OpenEXR/ImfRgbaFile.h>
 
 void ImagePPM::ToneMap () {
     imageToSave = new PPM_pixel[W*H];
@@ -140,4 +141,34 @@ bool ImagePPM::SavePFM(std::string filename) {
 
     ofs.close();
     return true;
+}
+
+void ImagePPM::EXRAux() {
+    imageToSaveEXR = new Imf::Rgba[W * H];
+
+    for (int j = 0; j < H; j++) {
+        for (int i = 0; i < W; ++i) {
+            imageToSaveEXR[j * W + i].r = imagePlane[j * W + i].R;
+            imageToSaveEXR[j * W + i].g = imagePlane[j * W + i].G;
+            imageToSaveEXR[j * W + i].b = imagePlane[j * W + i].B;
+            imageToSaveEXR[j * W + i].a = 1.0f; // Set alpha to 1.0 (fully opaque)
+        }
+    }
+}
+
+bool ImagePPM::SaveEXR(std::string filename) {
+    EXRAux();
+
+    try {
+        Imf::RgbaOutputFile file(filename.c_str(), W, H, Imf::WRITE_RGBA);
+
+        // Write the image data to the OpenEXR file
+        file.setFrameBuffer(imageToSaveEXR, 1, W);
+        file.writePixels(H);
+
+        return true;
+    } catch (const std::exception &ex) {
+        std::cerr << "Error: " << ex.what() << std::endl;
+        return false;
+    }
 }

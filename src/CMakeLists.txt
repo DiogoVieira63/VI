@@ -73,11 +73,15 @@ add_executable(VI_RT
         Camera/Environment.h
         )
 
-# Find libjpeg library
+# libjpeg library
 find_package(JPEG REQUIRED)
-
-# Add libjpeg include directories
 include_directories(${JPEG_INCLUDE_DIR})
+target_link_libraries(VI_RT PRIVATE ${JPEG_LIBRARY})
 
-# Link libjpeg to your project
-target_link_libraries(${PROJECT_NAME} ${JPEG_LIBRARY})
+# Set the path to the OpenEXR libraries and include directories
+set(OpenEXR_INCLUDE_DIRS /usr/include/OpenEXR)
+set(OpenEXR_LIBRARIES /usr/lib/x86_64-linux-gnu/libIlmImf.so /usr/lib/x86_64-linux-gnu/libHalf.so)
+
+# imageEXR library
+target_include_directories(VI_RT PRIVATE ${OpenEXR_INCLUDE_DIRS})
+target_link_libraries(VI_RT PRIVATE ${OpenEXR_LIBRARIES})
