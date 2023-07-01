@@ -18,6 +18,8 @@ class ImagePPM: public Image {
 public:
     ImagePPM(const int W, const int H):Image(W, H) {}
     bool Save (std::string filename);
+    bool SaveJPG (std::string filename);
+    bool SavePFM (std::string filename);
 };
 
 #endif /* ImagePPM_hpp */

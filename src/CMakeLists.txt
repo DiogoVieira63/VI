@@ -62,4 +62,22 @@ add_executable(VI_RT
         Shader/AmbientShader.cpp
         Renderer/StandardRenderer.cpp
         Light/PointLight.hpp
-        Shader/WhittedShader.cpp Light/AreaLight.hpp Primitive/Geometry/Triangle.hpp Shader/DistributedShader.hpp Shader/DistributedShader.cpp Shader/PathTracerShader.cpp Shader/PathTracerShader.hpp Camera/Environment.cpp Camera/Environment.h)
+        Shader/WhittedShader.cpp
+        Light/AreaLight.hpp
+        Primitive/Geometry/Triangle.hpp
+        Shader/DistributedShader.hpp
+        Shader/DistributedShader.cpp
+        Shader/PathTracerShader.cpp
+        Shader/PathTracerShader.hpp
+        Camera/Environment.cpp
+        Camera/Environment.h
+        )
+
+# Find libjpeg library
+find_package(JPEG REQUIRED)
+
+# Add libjpeg include directories
+include_directories(${JPEG_INCLUDE_DIR})
+
+# Link libjpeg to your project
+target_link_libraries(${PROJECT_NAME} ${JPEG_LIBRARY})

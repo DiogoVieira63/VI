@@ -25,11 +25,15 @@ using namespace std::chrono;
 int main(int argc, const char * argv[]) {
     Scene scene;
     Camera *cam; // Camera
+
+    int i;
+    cout << "Please enter an integer for image format choice: \n\t 1 - PPM \n\t 2 - JPEG \n\t 3 - PFM \n\t\t>>";
+    cin >> i;
+
     ImagePPM *img;    // Image
     Shader *shd;
     bool success;
     auto start = high_resolution_clock::now();
-
 
     success = scene.Load("../models/cornell_box_VI.obj");
 
@@ -46,6 +50,8 @@ int main(int argc, const char * argv[]) {
     // Image resolution
     const int W= 1024;
     const int H= W;
+
+
 
     img = new ImagePPM(W,H);
     
@@ -126,9 +132,21 @@ int main(int argc, const char * argv[]) {
 
     printf("Rendering done!\n");
 
+    switch (i) {
+        case 1:
+            img->Save("../images/MyImage.ppm");
+            printf("Image saved!\n");
+        case 2:
+            img->SaveJPG("../images/MyImage.jpg");
+            printf("Image saved!\n");
+        case 3:
+            img->SavePFM("../images/MyImage.pfm");
+            printf("Image saved!\n");
+    }
+
     // save the image
-    img->Save("../images/MyImage.ppm");
-    printf("Image saved!\n");
+    //img->Save("../images/MyImage.ppm");
+    //printf("Image saved!\n");
 
 
 
