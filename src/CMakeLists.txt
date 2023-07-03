@@ -24,12 +24,14 @@ include_directories(Scene/tinyobjloader/tests)
 include_directories(Shader)
 include_directories(utils)
 
+find_package(OpenMP)
 if (OPENMP_FOUND)
-    find_package(OpenMP)
+
     set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
     set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
 endif()
+
 
 add_executable(VI_RT
         3DSortingStruct/AccelStruct.hpp
@@ -83,5 +85,6 @@ set(OpenEXR_INCLUDE_DIRS /usr/include/OpenEXR)
 set(OpenEXR_LIBRARIES /usr/lib/x86_64-linux-gnu/libIlmImf.so /usr/lib/x86_64-linux-gnu/libHalf.so)
 
 # imageEXR library
+
 target_include_directories(VI_RT PRIVATE ${OpenEXR_INCLUDE_DIRS})
 target_link_libraries(VI_RT PRIVATE ${OpenEXR_LIBRARIES})

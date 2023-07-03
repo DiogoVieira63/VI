@@ -11,19 +11,40 @@
 #include <jpeglib.h>
 #include <OpenEXR/ImfRgbaFile.h>
 
-void ImagePPM::ToneMap () {
+//void ImagePPM::ToneMap () {
+//    imageToSave = new PPM_pixel[W*H];
+//
+//    // loop over each pixel in the image, clamp and convert to byte format
+//    for (int j = 0 ; j< H ; j++) {
+//        for (int i = 0; i < W ; ++i) {
+//            imageToSave[j*W+i].val[0] = (unsigned char)(std::min(1.f, imagePlane[j*W+i].R) * 255);
+//            imageToSave[j*W+i].val[1] = (unsigned char)(std::min(1.f, imagePlane[j*W+i].G) * 255);
+//            imageToSave[j*W+i].val[2] = (unsigned char)(std::min(1.f, imagePlane[j*W+i].B) * 255);
+//        }
+//    }
+//}
+
+void ImagePPM::ToneMap() {
     imageToSave = new PPM_pixel[W*H];
-    
-    // loop over each pixel in the image, clamp and convert to byte format
-    for (int j = 0 ; j< H ; j++) {
-        for (int i = 0; i < W ; ++i) {
-            imageToSave[j*W+i].val[0] = (unsigned char)(std::min(1.f, imagePlane[j*W+i].R) * 255);
-            imageToSave[j*W+i].val[1] = (unsigned char)(std::min(1.f, imagePlane[j*W+i].G) * 255);
-            imageToSave[j*W+i].val[2] = (unsigned char)(std::min(1.f, imagePlane[j*W+i].B) * 255);
+
+    // loop over each pixel in the image, calculate luminance, and tone map
+    for (int j = 0; j < H; j++) {
+        for (int i = 0; i < W; ++i) {
+            // Calculate luminance from RGB values (using approximate luminance weights)
+            float luminance = 0.2126f * imagePlane[j*W+i].R + 0.7152f * imagePlane[j*W+i].G + 0.0722f * imagePlane[j*W+i].B;
+
+            // Apply Reinhard tone mapping operator
+            float toneMappedLuminance = luminance / (1.0f + luminance);
+
+            // Convert back to RGB
+            imageToSave[j*W+i].val[0] = (unsigned char)(toneMappedLuminance * imagePlane[j*W+i].R / luminance * 255);
+            imageToSave[j*W+i].val[1] = (unsigned char)(toneMappedLuminance * imagePlane[j*W+i].G / luminance * 255);
+            imageToSave[j*W+i].val[2] = (unsigned char)(toneMappedLuminance * imagePlane[j*W+i].B / luminance * 255);
         }
     }
-
 }
+
+
 
 bool ImagePPM::Save (std::string filename) {
     

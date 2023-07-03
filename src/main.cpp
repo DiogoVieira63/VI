@@ -56,11 +56,12 @@ int main(int argc, const char * argv[]) {
     img = new ImagePPM(W,H);
     
     // Camera parameters
-    const Point Eye ={280,278,-100}, At={280,278,250};
+    const Point Eye ={280,275,-330}, At={280,265,0};
     const Vector Up={0,-1,0};
     const float fovW = 3.14f/2.f, fovH = fovW * H/W;
     //cam = new Perspective(Eye, At, Up, W, H, fovW, fovH);
-    cam = new Environment(Eye, At, Up, W, H, fovW, fovH);
+    const Point EyeE ={280,278,-100}, AtE={280,278,250};
+    cam = new Environment(EyeE, AtE, Up, W, H, fovW, fovH);
 
     // add an ambient light to the scene
     /*
@@ -136,15 +137,19 @@ int main(int argc, const char * argv[]) {
         case 1:
             img->Save("../images/MyImage.ppm");
             printf("Image saved!\n");
+            break;
         case 2:
             img->SaveJPG("../images/MyImage.jpg");
             printf("Image saved!\n");
+            break;
         case 3:
             img->SavePFM("../images/MyImage.pfm");
             printf("Image saved!\n");
+            break;
         case 4:
             img->SavePFM("../images/MyImage.exr");
             printf("Image saved!\n");
+            break;
     }
 
     // save the image
